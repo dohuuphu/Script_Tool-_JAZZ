@@ -1,0 +1,70 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import variable
+import time
+
+
+PATH = r"C:\Users\pdo2\Desktop\Script Tool\Src\Driver\chromedriver84.exe"
+driver = webdriver.Chrome(PATH)
+
+driver.get("https://rationalcld.dl.net/qm")
+driver.maximize_window()
+
+
+def Click_button_id(timeout_item, path_item):
+    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.ID, path_item)))        # wait until item exits
+    item =  driver.find_element_by_id(path_item)
+    item.click()
+
+def Click_button_xpath(timeout_item, path_item):
+    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.ID, path_item)))        # wait until item exits
+    item =  driver.find_element_by_xpath(path_item)
+    item.click()
+
+def Send_key_id(timeout_item, path_item, string):
+    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.ID, path_item)))        # wait until item exits
+    item =  driver.find_element_by_id(path_item)
+    item.send_keys(string)
+
+def Send_key_xpath(timeout_item, path_item, string):
+    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.ID, path_item)))        # wait until item exits
+    item =  driver.find_element_by_xpath(path_item)
+    item.send_keys(string)
+
+# def login():  
+#     WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.ID, variable.IDuser_id)))        # wait until IDbox exits
+#     #Find path
+#     IDuser = driver.find_element_by_id(variable.IDuser_id)
+#     pass_login = driver.find_element_by_id(variable.password_id)
+#     login_button = driver.find_element_by_xpath(variable.login_button_xpath)
+    
+#     # Edit login
+#     IDuser.send_keys( "lhoang")
+#     pass_login.send_keys("D@talogic7")
+#     login_button.click()
+#     WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.LINK_TEXT, "ID (Test)")))        # wait until ID(test) exits
+#     ID_test = driver.find_element_by_link_text("ID (Test)")
+#     ID_test.click()
+
+def login():
+    Send_key_id(30,variable.IDuser_id,variable.login_ID)
+    Send_key_id(30, variable.password_id, variable.login_password)
+    Click_button_xpath(30,variable.login_button_xpath)
+
+
+def Click_Planning():
+     WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.ID, variable.Plannningbox_id)))        # wait until planning box exits
+     Planning_box = driver.find_elements_by_id(variable.Plannningbox_id)
+     Planning_box.click()
+    
+def main():
+    login()
+
+if __name__ == "__main__":
+    main()
+    
+
+
