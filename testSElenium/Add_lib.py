@@ -1,74 +1,17 @@
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from variable import *
-import time
-
-
-PATH = r"C:\Users\pdo2\Desktop\Script Tool\Src\Driver\chromedriver84.exe"
-driver = webdriver.Chrome(PATH)
-
-driver.get("https://rationalcld.dl.net/qm")
-driver.maximize_window()
-
-
-def Click_button_id(timeout_item, path_item):
-    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.ID, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
-    item =  driver.find_element_by_id(path_item[0])
-    item.click()
-
-def Click_button_xpath(timeout_item, path_item):  
-    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
-    item =  driver.find_element_by_xpath(path_item[0])
-    item.click()
-
-def Click_LinkText(timeout_item, path_item):
-    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.LINK_TEXT, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
-    item =  driver.find_element_by_link_text(path_item[0])
-    item.click()
-    
-
-def Send_key_id(timeout_item, path_item, string):
-
-    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.ID, path_item[0])), message=("Can not find: "))        # wait until item exits
-    item =  driver.find_element_by_id(path_item[0])
-    item.send_keys(string)
-    
-
-def Send_key_xpath(timeout_item, path_item, string):
-    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
-    item =  driver.find_element_by_xpath(path_item[0])
-    item.send_keys(string)
-    
-
-# def send_key_test(timeout_item, path_item, string):
-#     int(timer) = time.time
-#     end_time = time + timeout_item
-#     try:
-#         while(True):
-#             driver.find_element_by_xpath(path_item[0]).send_keys(string)
-#             int(timer) = time.time
-#             if(time > end_time):
-#                 print("Nooo, out of time")                 
-#     except:
-#         print("oh nooooo")
-        
-
-
-
-
+from action_funtion import *
 
 # ============================= Script =====================
 def login():
-    Send_key_id(timeout,IDuser_id,login_ID)
+    # Login to webpage
+    Send_key_id(timeout,IDuser_id, login_ID)
     Send_key_id(timeout, password_id, login_password)
-    Click_button_xpath(timeout,login_button_xpath)
+    Click_button_xpath(timeout, login_button_xpath)
+    # Click link ** ID_test **
     Click_LinkText(timeout, ID_test_id)
+    # Click Planning & Browse
     Click_button_id(timeout, Plannningbox_id)
-    # send_key_test(timeout, IDuser_id, login_ID)
-    # send_key_test(timeout, password_id, login_password)
+    Click_button_xpath(timeout, Browse_TestPlan_id) 
+
 
 
 
