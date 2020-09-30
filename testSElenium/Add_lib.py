@@ -66,19 +66,20 @@ def login():
     Send_key_id(timeout, password_id, login_password)
     Click_button_xpath(timeout,login_button_xpath)
     Click_LinkText(timeout, ID_test_id)
+    Click_button_id(timeout, Plannningbox_id)
     # send_key_test(timeout, IDuser_id, login_ID)
     # send_key_test(timeout, password_id, login_password)
 
 
 
-def Click_Planning():
-    WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.ID, Plannningbox_id)))        # wait until planning box exits
-    Planning_box = driver.find_elements_by_id(Plannningbox_id)
-    Planning_box.click()
+# def Click_Planning():
+#     WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.ID, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
+#     Planning_box = driver.find_elements_by_id(Plannningbox_id[0])
+#     Planning_box.click()
 
 def main():
     login()
-    Click_Planning()
+    #Click_Planning()
 
 if __name__ == "__main__":
     main()
