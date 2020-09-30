@@ -1,10 +1,10 @@
 #Const
 login_ID = "lhoang"
 login_password = "D@talogic7"
-timeout = 5
+timeout = 30
 
 #path
-IDuser_id = ["jazz_app_internal_LoginWidget_0_userId", "IDuser_id"]
+IDuser_id = ['jazz_app_internal_LoginWidget_0_userId', 'IDuser_id']
 password_id = ["jazz_app_internal_LoginWidget_0_password", "password_id"]
 login_button_xpath = ["//*[@id=\"jazz_app_internal_LoginWidget_0\"]/div[1]/div[1]/div[3]/form/button", "login_button_xpath"]
 ID_test_id = ["ID (Test)","ID (test)"]
