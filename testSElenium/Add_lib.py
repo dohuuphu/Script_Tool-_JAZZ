@@ -72,14 +72,10 @@ def login():
 
 
 
-# def Click_Planning():
-#     WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.ID, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
-#     Planning_box = driver.find_elements_by_id(Plannningbox_id[0])
-#     Planning_box.click()
+
 
 def main():
     login()
-    #Click_Planning()
 
 if __name__ == "__main__":
     main()
