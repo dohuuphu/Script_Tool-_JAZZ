@@ -7,7 +7,7 @@ from variable import *
 import time
 
 
-PATH = r"C:\Users\pdo2\Desktop\Script Tool\Src\Driver\chromedriver84.exe"
+PATH = r"C:\Users\dnguyen4\Documents\Script_Tool-_JAZZ\Driver\chromedriver84.exe"
 driver = webdriver.Chrome(PATH)
 
 driver.get("https://rationalcld.dl.net/qm")
@@ -62,7 +62,7 @@ def Send_key_xpath(timeout_item, path_item, string):
 def login():
     Send_key_id(timeout,IDuser_id,login_ID)
     Send_key_id(timeout, password_id, login_password)
-    #Click_button_xpath(timeout,login_button_xpath)
+    Click_button_xpath(timeout,login_button_xpath)
     Click_LinkText(timeout, ID_test_id)
 
 
