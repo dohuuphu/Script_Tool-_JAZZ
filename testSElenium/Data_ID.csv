@@ -1,4 +1,4 @@
-Name,Test Machine,Buid Record,Status
+Name,ID_XPath,Status
 IDuser_id,jazz_app_internal_LoginWidget_0_userId,
 password_id,jazz_app_internal_LoginWidget_0_password,
 login_button_xpath,"//*[@id=""jazz_app_internal_LoginWidget_0""]/div[1]/div[1]/div[3]/form/button",
