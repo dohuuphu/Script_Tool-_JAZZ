@@ -16,9 +16,12 @@ def login():
     Click_button_id(timeout, Plannningbox_id)
     Click_Text(timeout, Browse_TestPlan_text)
     Click_FilterText_TestPlan(timeout, filter_TestPlan)
+    print("filled 1439")
     Click_LinkText(timeout, TestPlan_linktext)
     #Click Test suit execution records
     Click_Text(timeout, Testsuit_records_text)
+    #Click_aria_lable(timeout, TC1_arialable)
+    Run_TestSuit()
 
 
 
@@ -26,7 +29,16 @@ def login():
 def main():
     setup()
     login()
-    
+    #find_max_ArrMachine()
+    # arr = []
+    # try:
+    #     print("ASd")
+    #     print(arr[0])
+    # except:
+    #     print("no")
+    # a= "dhp"
+    # b= "'"+a+"'"
+    # print(b)
 
 if __name__ == "__main__":
     main()

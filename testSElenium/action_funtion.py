@@ -28,30 +28,52 @@ def Click_button_name(timeout_item, path_item):  ########
     print("asdasdasd")
 
 def Click_LinkText(timeout_item, path_item):
-    WebDriverWait(driver, timeout_item).until(EC.element_to_be_clickable((By.LINK_TEXT, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
-    driver.find_element_by_link_text(path_item[0]).click()
+    try:        # USE try to fix error: "Message: stale element reference: element is not attached to the page document"
+        WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.LINK_TEXT, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
+        driver.find_element_by_link_text(path_item[0]).click()
+    except: 
+        WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.LINK_TEXT, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
+        driver.find_element_by_link_text(path_item[0]).click()
     
 def Click_Text(timeout_item, path_item):
     count = 0
     while(count < timeout_item):
         try:
-            time.sleep(1) # it still run click() if not sleep, but won't actually click
+            time.sleep(2) # it still run click() if not sleep, but won't actually click
             xpath = "//*[text()="+path_item+"]"
+            print(driver.find_elements_by_xpath(xpath))
             find_element = driver.find_elements_by_xpath(xpath)[0]
             display = find_element.is_displayed()  # check if the path displays
             if(display is True):
-                print("display: " + str(display))
+                #print("display: " + str(display))
                 WebDriverWait(driver, timeout_item).until(EC.element_to_be_clickable((By.XPATH, xpath)), message=("Can not find: " + path_item[1])) # check if the path is clickable                       
                 find_element.click()   
-                print("good: element was clicked")             
+                #print("good: element was clicked")             
                 break
 
             
         except:
             time.sleep(1)
-            print("Waiting for element display")
+            print("Waiting for Click_Text")
             count = count + 1
-    
+
+def Click_aria_lable(timeout_item,path_item):
+    count = 0
+    while(count < timeout_item):
+        try:
+            xpath = "//*[@aria-label="+path_item+"]"
+            find_element = driver.find_elements_by_xpath(xpath)[0]
+            display = find_element.is_displayed()  # check if the path displays
+            if(display is True):
+                WebDriverWait(driver, timeout_item).until(EC.element_to_be_clickable((By.XPATH, xpath)), message=("Can not find: Filter Test plan ")) # check if the path is clickable          
+                #print("display: " + str(display))
+                find_element.click()
+                print("good: element was clicked")
+                break
+        except:
+            time.sleep(1)
+            print("Waiting for Click_aria_lable")
+            count = count + 1   
     
 # def Click_Title(timeout_item, path_item):
 #     time.sleep(1) # wait update text tag 
@@ -85,26 +107,6 @@ def Send_key_xpath(timeout_item, path_item, string):
     driver.find_element_by_xpath(path_item[0]).send_keys(string)
 
 
-
-
-# def send_key_test(timeout_item, path_item, string):
-#     last_time = time.time()
-#     while(True):
-#         try:
-#             ite = driver.find_element_by_xpath(path_item[0])
-#             #item.send_keys(string)
-#             print("was send") 
-#             break                                 
-#         except:
-#             print("Except")
-#         delta = time.time() - last_time
-#         time.sleep(1)
-#         print("detal= " + str(delta))
-#         if(delta > timeout_item ):
-#             print("Nooo, out of time")
-#             break
-
-
 #================== specific function===================
 def Click_FilterText_TestPlan(timeout_item,string):
     count = 0
@@ -124,3 +126,35 @@ def Click_FilterText_TestPlan(timeout_item,string):
             time.sleep(1)
             print("Waiting for element display")
             count = count + 1
+
+
+# Global Variables
+arrMachine1 = [1,9,3,11,15]                       # all of Test suit are selected with Machine 1
+arrMachine2 = [2,12,6,4]                          #
+arrMachine3 = [5,7,8]                             #
+Arr = [arrMachine1, arrMachine2, arrMachine3]
+max_len = 0
+
+
+def find_max_ArrMachine():
+    for i in Arr:
+        if(len(i) > max_len):
+            max_len = len(i) 
+    print("max length arr: " + str(max_len))
+
+#def cong
+ 
+
+def Run_TestSuit():
+    #for i in max_len:
+        try:
+            #print("get name")
+            name_TS1 = "'CommandlineTest - Load configuration with Script Formatting from PC_Matrix M300N'"  # arrMachine1[i] = name test suit;         #getName_TestSuit(arrMachine1[i])
+            Click_Text(timeout, name_TS1)
+            print("runnnn")
+            Click_aria_lable(timeout, Run_btn_arialable)
+            Click_button_id(timeout, Runbutton_id)
+        except: 
+            print("noo")
+
+
