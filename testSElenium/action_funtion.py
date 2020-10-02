@@ -57,7 +57,7 @@ def Click_Text(timeout_item, path_item):
             print("Waiting for Click_Text")
             count = count + 1
 
-def Click_aria_lable(timeout_item,path_item):
+def Click_aria_lable(timeout_item,path_item,):
     count = 0
     while(count < timeout_item):
         try:
