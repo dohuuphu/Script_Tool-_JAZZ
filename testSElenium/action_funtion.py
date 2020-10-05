@@ -81,8 +81,8 @@ def Send_Tag_htlm(tag, timeout_item,path_item, string):
     count = 0
     while(count < timeout_item):
         try:
-            xpath = "//*[@"+tag+"=\""+path_item+"\"]"
-            #print(xpath)
+            xpath = "//*["+tag+"=\""+path_item+"\"]"
+            print(xpath)
             find_element = driver.find_elements_by_xpath(xpath)[0]
             display = find_element.is_displayed()  # check if the path displays
             if(display is True):
@@ -144,17 +144,5 @@ def find_max_ArrMachine():
 
  
 
-def Run_TestSuit(): # example
-    #for i in max_len:
-        try:
-            name_TS1 = "CommandlineTest - Load configuration with Script Formatting from PC_Matrix M300N"  # arrMachine1[i] = name test suit;         #getName_TestSuit(arrMachine1[i])
-            Click_Tag_htlm(text_Tag, timeout, name_TS1)
-            Click_Tag_htlm(aria_label_tag ,timeout, Run_btn_arialable)
-            Click_Tag_htlm(text_Tag, timeout, Run_text)
-        except: 
-            print("noo")
 
-def Edit_build_record():
-    Click_Tag_htlm(title_tag, timeout, Clear_Associated_Build_title)
-    Click_Tag_htlm(title_tag, timeout, Change_Associated_Build_title )
 

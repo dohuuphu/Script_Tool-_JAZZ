@@ -3,7 +3,7 @@
 #   Const
 login_ID = "lhoang"
 login_password = "D@talogic7"
-timeout = 20
+timeout = 60
 filter_TestPlan = "1439"
 
 #path
@@ -31,12 +31,13 @@ Run_text = "Run"
 Filter_TsPlan_arialable = "This is Test Plans table: filter text input"
 TC1_arialable = "CommandlineTest - Load configuration with Script Formatting from PC_Matrix M300N"
 Run_btn_arialable= "Run Test Suite (Ctrl+Shift+X) Drop-Down Menu"
-#filterText_name = ["This is Test Plans table Clear Filter Text", "filterText_name"]
+Filter_record_arialable = "This is View Build Records table: filter text input"
 
 # Title value:
 Planning_title = "Planning"
 Clear_Associated_Build_title = "Clear Associated Build"
 Change_Associated_Build_title = "Change Associated Build"
+Clear_Table_Filters = "Clear Table Filters"
 
 
 # Tag_html

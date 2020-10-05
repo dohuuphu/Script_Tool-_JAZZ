@@ -1,22 +1,25 @@
-from selenium import webdriver
+from action_funtion import *
+
+def setup2():
+    driver.get("https://rationalcld.dl.net/qm/web/console/ID%20%28Test%29#action=com.ibm.rqm.planning.home.actionDispatcher&subAction=viewSER&id=244409")
+    #driver.maximize_window()
+
+     # Login to webpage
+    Send_key_id(timeout,IDuser_id, login_ID)
+    Send_key_id(timeout, password_id, login_password)
+    Click_button_xpath(timeout, login_button_xpath)
+
+    # Click Run
+    Click_Tag_htlm(aria_label_tag ,timeout, Run_btn_arialable)
+    Click_Tag_htlm(text_Tag, timeout, Run_text)
+    Edit_build_record()
 
 
 
+def main():
+    setup2()
 
-email, password = 'your-own-email', 'your-own-password'
-PATH = r"C:\Users\pdo2\Desktop\Script Tool\Src\Driver\chromedriver84.exe"
 
-driver = webdriver.chrome(PATH)
-driver.implicitly_wait(10)
-
-driver.get("https://my.gumtree.com/login")
-driver.find_element_by_name("username").send_keys(email)
-driver.find_element_by_id("existingUser").click()
-driver.find_element_by_id("fld-password").send_keys(password)
-driver.find_element_by_xpath("//*[contains(text(), 'Continue')]").click()
-
-driver.get("https://my.gumtree.com/postad")
-driver.find_elements_by_xpath("//*[text()='For Sale']")[-1].click()
-driver.find_element_by_xpath("//span[text()[normalize-space()='Appliances']]").click()
-driver.find_element_by_xpath("//span[text()[normalize-space()='Home Appliances']]").click()
-driver.find_element_by_xpath("//span[text()[normalize-space()='Other Home Appliances']]").click()
+if __name__ == "__main__":
+    main()
+    
