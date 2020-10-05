@@ -3,7 +3,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-#from selenium.webdriver.remote.command import Command
+#from Get_Data_ID import *
 from variable import *
 import time
 
@@ -57,44 +57,58 @@ def Click_Text(timeout_item, path_item):
             print("Waiting for Click_Text")
             count = count + 1
 
-def Click_Tag_htlm(tag, timeout_item,path_item):
+def Click_Tag_htlm(tag, timeout_item, path_item):
+    global error_flag
     count = 0
-    while(count < timeout_item):
-        try:
-            xpath = "//*[" +tag+ "=\"" +path_item+ "\"]"
-            #print(xpath)
-            find_element = driver.find_elements_by_xpath(xpath)[0]
-            display = find_element.is_displayed()  # check if the path displays
-            if(display is True):
-                WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find: ")) # check if the path is clickable          
-                #print("display: " + str(display))
-                #time.sleep(1)
-                find_element.click()
-                print("good: "+ tag + " was clicked")
-                break
-        except:
-            time.sleep(1)
-            print("Waiting for Click " + tag)
-            count = count + 1   
+    done = 0
+    if(error_flag == 0):  
+        while(count < timeout_item):
+            try:
+                xpath = "//*[" +tag+ "=\"" +path_item[1]+ "\"]"
+                print(xpath)
+                find_element = driver.find_elements_by_xpath(xpath)[0]
+                display = find_element.is_displayed()  # check if the path displays
+                if(display is True):
+                    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find: "+path_item[0])) # check if the path is clickable          
+                    #print("display: " + str(display))
+                    #time.sleep(1)
+                    find_element.click()
+                    print("good: "+ tag + " was clicked")
+                    done = 1 
+                    break
+            except:
+                time.sleep(1)
+                print("Waiting for Click " + tag)
+                count = count + 1   
+        if(done == 0):   # try: was not run
+            error_flag = 1 # have error
 
-def Send_Tag_htlm(tag, timeout_item,path_item, string):
+
+
+def Send_Tag_htlm(tag, timeout_item,path_item):
+    global error_flag
     count = 0
-    while(count < timeout_item):
-        try:
-            xpath = "//*["+tag+"=\""+path_item+"\"]"
-            print(xpath)
-            find_element = driver.find_elements_by_xpath(xpath)[0]
-            display = find_element.is_displayed()  # check if the path displays
-            if(display is True):
-                WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find ")) # check if the path is clickable          
-                #print("display: " + str(display))
-                find_element.send_keys(string)
-                print("good: "+ tag + " was sent")
-                break
-        except:
-            time.sleep(1)
-            print("Waiting for send " + tag)
-            count = count + 1   
+    done = 0
+    if(error_flag == 0):
+        while(count < timeout_item):
+            try:
+                xpath = "//*["+tag+"=\""+path_item[1]+"\"]"
+                print(xpath)
+                find_element = driver.find_elements_by_xpath(xpath)[0]
+                display = find_element.is_displayed()  # check if the path displays
+                if(display is True):
+                    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find " + path_item[0] )) # check if the path is clickable          
+                    #print("display: " + str(display))
+                    find_element.send_keys(path_item[2])
+                    print("good: "+ tag + " was sent")
+                    done = 1 
+                    break
+            except:
+                time.sleep(1)
+                print("Waiting for send " + tag)
+                count = count + 1   
+        if(done == 0):   # try: was not run
+            error_flag = 1 # have error
       
 
 def Send_key_id(timeout_item, path_item, string):
@@ -109,23 +123,29 @@ def Send_key_xpath(timeout_item, path_item, string):
 
 #================== specific function===================
 def Click_FilterText_TestPlan(timeout_item,string):
+    global error_flag
     count = 0
-    while(count < timeout_item):
-        try:
-            xpath = "//input[@aria-label='This is Test Plans table: filter text input']"
-            find_element = driver.find_elements_by_xpath(xpath)[0]
-            display = find_element.is_displayed()  # check if the path displays
-            if(display is True):
-                WebDriverWait(driver, timeout_item).until(EC.element_to_be_clickable((By.XPATH, xpath)), message=("Can not find: Filter Test plan ")) # check if the path is clickable          
-                print("display: " + str(display))
-                find_element.click()
-                print("good: element was clicked")
-                find_element.send_keys(string)
-                break
-        except:
-            time.sleep(1)
-            print("Waiting for element display")
-            count = count + 1
+    done = 0
+    if(error_flag == 0):
+        while(count < timeout_item):
+            try:
+                xpath = "//input[@aria-label='This is Test Plans table: filter text input']"
+                find_element = driver.find_elements_by_xpath(xpath)[0]
+                display = find_element.is_displayed()  # check if the path displays
+                if(display is True):
+                    WebDriverWait(driver, timeout_item).until(EC.element_to_be_clickable((By.XPATH, xpath)), message=("Can not find: Filter Test plan ")) # check if the path is clickable          
+                    print("display: " + str(display))
+                    find_element.click()
+                    print("good: element was clicked")
+                    find_element.send_keys(string)
+                    done = 1
+                    break
+            except:
+                time.sleep(1)
+                print("Waiting for element display")
+                count = count + 1
+        if(done == 0):   # try: was not run
+            error_flag = 1 # have error
 
 
 # Global Variables
@@ -146,3 +166,23 @@ def find_max_ArrMachine():
 
 
 
+def Run_TestSuit(): # example
+    #for i in max_len:
+        try:
+            name_TS1 = ["name_TS1", "CommandlineTest - Load configuration with Script Formatting from PC_Matrix M300N"]  # arrMachine1[i] = name test suit;         #getName_TestSuit(arrMachine1[i])
+            Click_Tag_htlm(text_Tag, timeout, name_TS1)
+            Click_Tag_htlm(aria_label_tag ,timeout, Run_btn_arialable)
+            Click_Tag_htlm(text_Tag, timeout, Run_text)
+        except: 
+            print("noo")
+
+
+def Edit_build_record():
+    Click_Tag_htlm(title_tag, timeout, Clear_Associated_Build_title)
+    Click_Tag_htlm(title_tag, timeout, Change_Associated_Build_title)
+
+    Click_Tag_htlm(title_tag, timeout, Clear_Table_Filters_title)
+    Click_Tag_htlm(Name_tag, timeout, Clear_Text_Filter_name) 
+    
+    Send_Tag_htlm(aria_label_tag, timeout,Filter_record_arialable)
+    Click_Tag_htlm(Class_tag, timeout, Run_filter_buildrecord_class)

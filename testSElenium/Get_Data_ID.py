@@ -1,14 +1,25 @@
 import csv
 import pandas as pd
-def Read_Data_ID(input_Name):
+def Read_Path(input_Name):
     with open('Data_ID.csv', 'r') as file:
         reader = csv.DictReader(file)
         for row in reader:
             name = row['Name']
-            idxpath = row['ID_XPath']
-            if input_Name== name:
-                print("Name : ", name)
-                print("idXpath : " ,idxpath)
+            path = row['ID_XPath']
+            if input_Name == name:
+                return [name, path]
+            else:
+                print("Name is not correct")
 
-Read_Data_ID("IDuser_id")
-Read_Data_ID("Plannningbox_id")
+def Read_value(input_Name):
+    with open('Data_ID.csv', 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            name = row['Name']
+            value = row['Status']
+            if input_Name == name:
+                return value
+            print("Name is not correct")
+
+a = Read_value("login_ID")
+print(a)

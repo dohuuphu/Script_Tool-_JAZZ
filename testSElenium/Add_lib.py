@@ -2,13 +2,12 @@ from action_funtion import *
 #import action_funtion as act
 # #import action_funtion.*
 
-
 # ============================= Script =====================
 def login_to_testSuit_record():
     # Login to webpage
-    Send_key_id(timeout,IDuser_id, login_ID)
-    Send_key_id(timeout, password_id, login_password)
-    Click_button_xpath(timeout, login_button_xpath)
+    Send_Tag_htlm(ID_tag, timeout, IDuser_id)
+    Send_Tag_htlm(ID_tag, timeout, password_id)
+    Click_Tag_htlm(text_Tag, timeout, Login_text)
    
     # Click link ** ID_test **
     Click_LinkText(timeout, ID_test_linktext)
@@ -27,38 +26,42 @@ def login_to_testSuit_record():
     
     #Click Test suit execution records
     Click_Tag_htlm(text_Tag, timeout, Testsuit_records_text)
-
-def Run_TestSuit(): # example
-    #for i in max_len:
-        try:
-            name_TS1 = "CommandlineTest - Load configuration with Script Formatting from PC_Matrix M300N"  # arrMachine1[i] = name test suit;         #getName_TestSuit(arrMachine1[i])
-            Click_Tag_htlm(text_Tag, timeout, name_TS1)
-            Click_Tag_htlm(aria_label_tag ,timeout, Run_btn_arialable)
-            Click_Tag_htlm(text_Tag, timeout, Run_text)
-        except: 
-            print("noo")
+    
 
 
-def Edit_build_record():
-    Click_Tag_htlm(title_tag, timeout, Clear_Associated_Build_title)
-    Click_Tag_htlm(title_tag, timeout, Change_Associated_Build_title)
-    Click_Tag_htlm(title_tag, timeout, Clear_Table_Filters)
-    #Click_Tag_htlm(aria_label_tag, timeout, Filter_record_arialable)
-    Send_Tag_htlm(aria_label_tag, timeout,Filter_record_arialable, "adf" )
 
 
 
 
 def main():
     setup()
-    login_to_testSuit_record()
+    login_to_testSuit_record()  
     Run_TestSuit()
     Edit_build_record()
+    
+    # while(True):
+    #     try:
+    #         print("try try try")
+    #         a=0
+    #         b=1
+    #         break
+    #     except:
+    #         print("except")
 
 
 
 if __name__ == "__main__":
     main()
+    if(error_flag != 0):
+        try:
+            error_flag == 0
+            main()
+            if(error_flag != 0): 
+                print("can't solve")
+                exit(1)
+            
+        except:
+            exit(1)
     
 
 
