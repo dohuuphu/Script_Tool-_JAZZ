@@ -11,7 +11,7 @@ filter_TestPlan = "1439"
 IDuser_id = ['jazz_app_internal_LoginWidget_0_userId', 'IDuser_id']
 password_id = ["jazz_app_internal_LoginWidget_0_password", "password_id"]
 Plannningbox_id = ["jazz_ui_MenuPopup_7", "Plannningbox_id"]
-Runbutton_id = ["dijit_MenuItem_12_text"]
+Runbutton_id = ["dijit_MenuItem_12_text", "Runbutton_id"]
 
 # Xpath:
 login_button_xpath = ["//*[@id=\"jazz_app_internal_LoginWidget_0\"]/div[1]/div[1]/div[3]/form/button", "login_button_xpath"]
