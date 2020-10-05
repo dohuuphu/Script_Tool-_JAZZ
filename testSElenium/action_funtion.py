@@ -19,26 +19,6 @@ def Click_button_id(timeout_item, path_item):
     WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.ID, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
     driver.find_element_by_id(path_item[0]).click()
     print("buttin_id was clicked")
-
-def Click_id(timeout_item, path_item):
-    count = 0
-    while(count < timeout_item):
-        try:
-            #time.sleep(2) # it still run click() if not sleep, but won't actually click
-            id = path_item[0]
-            print(driver.find_elements_by_id(id))
-            find_element = driver.find_elements_by_id(id)
-            display = find_element.is_displayed()  # check if the path displays
-            if(display is True):
-                print("display: " + str(display))
-                WebDriverWait(driver, timeout_item).until(EC.element_to_be_clickable((By.ID, id)), message=("Can not find: " + path_item[1])) # check if the path is clickable                       
-                find_element.click()   
-                print("good: element was clicked")             
-                break         
-        except:
-            time.sleep(1)
-            print("Waiting for Click_ID")
-            count = count + 1
  
 def Click_button_xpath(timeout_item, path_item):  
     WebDriverWait(driver, timeout_item).until(EC.element_to_be_clickable((By.XPATH, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
@@ -77,45 +57,45 @@ def Click_Text(timeout_item, path_item):
             print("Waiting for Click_Text")
             count = count + 1
 
-def Click_aria_lable(timeout_item,path_item):
+def Click_Tag_htlm(tag, timeout_item,path_item):
     count = 0
     while(count < timeout_item):
         try:
-            xpath = "//*[@aria-label="+path_item+"]"
+            xpath = "//*[" +tag+ "=\"" +path_item+ "\"]"
+            #print(xpath)
             find_element = driver.find_elements_by_xpath(xpath)[0]
             display = find_element.is_displayed()  # check if the path displays
             if(display is True):
-                WebDriverWait(driver, timeout_item).until(EC.element_to_be_clickable((By.XPATH, xpath)), message=("Can not find: Filter Test plan ")) # check if the path is clickable          
+                WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find: ")) # check if the path is clickable          
                 #print("display: " + str(display))
+                #time.sleep(1)
                 find_element.click()
-                print("good: Aria_lable was clicked")
+                print("good: "+ tag + " was clicked")
                 break
         except:
             time.sleep(1)
-            print("Waiting for Click_aria_lable")
+            print("Waiting for Click " + tag)
             count = count + 1   
-    
-# def Click_Title(timeout_item, path_item):
-#     time.sleep(1) # wait update text tag 
-#     WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, "//*[title()="+path_item+"]")), message="nooooo")        # wait until item exits
-#     driver.find_elements_by_xpath("//*[text()="+path_item+"]")[-1]
 
-
-# def Click_Text(timeout_item, path_item):
-#     count = 0
-#     while(count < timeout_item):        
-#         try:
-#             WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, "//*[text()="+path_item+"]")), message="nooooo")        # wait until item exits
-#             driver.find_elements_by_xpath("//*[text()="+path_item+"]")[-1].click()
-#             count = 10
-#             print("was clicked")
-#         except:
-#             time.sleep(1)
-#             count = count + 1 
-#             print("except")
-
-
-    
+def Send_Tag_htlm(tag, timeout_item,path_item, string):
+    count = 0
+    while(count < timeout_item):
+        try:
+            xpath = "//*[@"+tag+"=\""+path_item+"\"]"
+            #print(xpath)
+            find_element = driver.find_elements_by_xpath(xpath)[0]
+            display = find_element.is_displayed()  # check if the path displays
+            if(display is True):
+                WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find ")) # check if the path is clickable          
+                #print("display: " + str(display))
+                find_element.send_keys(string)
+                print("good: "+ tag + " was sent")
+                break
+        except:
+            time.sleep(1)
+            print("Waiting for send " + tag)
+            count = count + 1   
+      
 
 def Send_key_id(timeout_item, path_item, string):
     WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.ID, path_item[0])), message=("Can not find: "))        # wait until item exits
@@ -162,19 +142,19 @@ def find_max_ArrMachine():
             max_len = len(i) 
     print("max length arr: " + str(max_len))
 
-#def cong
  
 
-def Run_TestSuit():
+def Run_TestSuit(): # example
     #for i in max_len:
         try:
-            #print("get name")
-            name_TS1 = "'CommandlineTest - Load configuration with Script Formatting from PC_Matrix M300N'"  # arrMachine1[i] = name test suit;         #getName_TestSuit(arrMachine1[i])
-            Click_Text(timeout, name_TS1)
-            print("runnnn")
-            Click_aria_lable(timeout, Run_btn_arialable)
-            Click_button_id(timeout, Runbutton_id)
+            name_TS1 = "CommandlineTest - Load configuration with Script Formatting from PC_Matrix M300N"  # arrMachine1[i] = name test suit;         #getName_TestSuit(arrMachine1[i])
+            Click_Tag_htlm(text_Tag, timeout, name_TS1)
+            Click_Tag_htlm(aria_label_tag ,timeout, Run_btn_arialable)
+            Click_Tag_htlm(text_Tag, timeout, Run_text)
         except: 
             print("noo")
 
+def Edit_build_record():
+    Click_Tag_htlm(title_tag, timeout, Clear_Associated_Build_title)
+    Click_Tag_htlm(title_tag, timeout, Change_Associated_Build_title )
 

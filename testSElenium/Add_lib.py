@@ -14,34 +14,28 @@ def login():
     Click_LinkText(timeout, ID_test_linktext)
     
     # Click Planning & Browse
-    Click_button_id(timeout, Plannningbox_id)
-    #Click_id(timeout, Plannningbox_id)
-    Click_Text(timeout, Browse_TestPlan_text)
-    # Click_FilterText_TestPlan(timeout, filter_TestPlan)
-    Click_aria_lable(timeout, Filter_TsPlan_arialable)
-    #print("filled 1439")
+    Click_Tag_htlm(title_tag, timeout, Planning_title)
+    time.sleep(2) # Browse test plan still run click() if not sleep, but won't actually click
+    Click_Tag_htlm(ID_tag, timeout, Browse_testplan_id) # text "browse test plan" can find 2 element => use ID
+
+    Click_FilterText_TestPlan(timeout, filter_TestPlan)
+    # Click_Tag_htlm(aria_label_tag, timeout, Filter_TsPlan_arialable)
+    # Send_Tag_htlm(aria_label_tag, timeout,Filter_TsPlan_arialable, filter_TestPlan)
+
+    print("filled 1439")
     Click_LinkText(timeout, TestPlan_linktext)
     
     #Click Test suit execution records
-    Click_Text(timeout, Testsuit_records_text)
+    Click_Tag_htlm(text_Tag, timeout, Testsuit_records_text)
     Run_TestSuit()
-
+    Edit_build_record()
 
 
 
 def main():
     setup()
     login()
-    #find_max_ArrMachine()
-    # arr = []
-    # try:
-    #     print("ASd")
-    #     print(arr[0])
-    # except:
-    #     print("no")
-    # a= "dhp"
-    # b= "'"+a+"'"
-    # print(b)
+
 
 if __name__ == "__main__":
     main()
