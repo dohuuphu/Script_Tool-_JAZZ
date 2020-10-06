@@ -3,6 +3,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains 
 #from Get_Data_ID import *
 from variable import *
 from variable_duy import *
@@ -111,6 +112,31 @@ def Send_Father_SonTag_htlm(tag, timeout_item, father, path_item):
         if(done == 0):   # try: was not run
             error_flag = 1 # have error
 
+def Click_Father_Son_Tag_htlm_Dbl(tag, timeout_item,father, path_item):
+    global error_flag
+    count = 0
+    done = 0
+    if(error_flag == 0):  
+        while(count < timeout_item):
+            try:
+                xpath = father + "//*[" +tag+ "=\"" +path_item[1]+ "\"]"
+                print(xpath)
+                find_element = driver.find_elements_by_xpath(xpath)[0]
+                display = find_element.is_displayed()  # check if the path displays
+                if(display is True):
+                    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find: "+path_item[0])) # check if the path is clickable          
+                    actionChains = ActionChains(driver)
+                    actionChains.double_click(find_element).perform()
+                    print("good: "+ tag + " was clicked")
+                    done = 1 
+                    break
+            except:
+                time.sleep(1)
+                print("Waiting for Click " + tag)
+                count = count + 1   
+        if(done == 0):   # try: was not run
+            error_flag = 1 # have error
+
 
 def Click_Tag_htlm(tag, timeout_item, path_item):
     global error_flag
@@ -128,6 +154,31 @@ def Click_Tag_htlm(tag, timeout_item, path_item):
                     #print("display: " + str(display))
                     #time.sleep(1)
                     find_element.click()
+                    print("good: "+ tag + " was clicked")
+                    done = 1 
+                    break
+            except:
+                time.sleep(1)
+                print("Waiting for Click " + tag)
+                count = count + 1   
+        if(done == 0):   # try: was not run
+            error_flag = 1 # have error
+
+def Click_Tag_htlm_Dbl(tag, timeout_item, path_item):
+    global error_flag
+    count = 0
+    done = 0
+    if(error_flag == 0):  
+        while(count < timeout_item):
+            try:
+                xpath = "//*[" +tag+ "=\"" +path_item[1]+ "\"]"
+                print(xpath)
+                find_element = driver.find_elements_by_xpath(xpath)[0]
+                display = find_element.is_displayed()  # check if the path displays
+                if(display is True):
+                    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find: "+path_item[0])) # check if the path is clickable          
+                    actionChains = ActionChains(driver)
+                    actionChains.double_click(find_element).perform()
                     print("good: "+ tag + " was clicked")
                     done = 1 
                     break

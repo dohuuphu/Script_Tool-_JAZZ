@@ -1,5 +1,5 @@
 from action_funtion import *
-from selenium.webdriver.common.action_chains import ActionChains
+
 
 def setup2():
     driver.get("https://rationalcld.dl.net/qm/web/console/ID%20%28Test%29#action=com.ibm.rqm.planning.home.actionDispatcher&subAction=viewSER&id=244409")
@@ -13,19 +13,19 @@ def setup2():
     # Click Run
     Click_Tag_htlm(aria_label_tag ,timeout, Run_btn_arialable)
     Click_Tag_htlm(Class_tag, timeout, Run_testsuit_class)
-    #Click_Father_Son_Tag_htlm(title_tag,timeout,testcase_1, Machine_title)
-    time.sleep(10)
-    #xpath = "//tr[@name= '_IMTthl-EEeqc9ZermTj1qQ-row']//span[text()=\"TEST02-PC\"]"
-    #xpath = "//*[@id=\"com_ibm_asq_common_web_ui_internal_widgets_tableViewer_TableViewer_0\"]/div[3]/div/table/tbody/tr[1]/td[4]"
-    xpath = "/html/body/div[6]/div[2]/div[2]/div[3]/div/div[1]/div[1]/div[3]/div[2]/div/div/div[4]/div[2]/div/div/div[3]/div/table/tbody/tr[1]/td[4]/div/div"
-    #"/html/body/div[6]/div[2]/div[2]/div[3]/div/div[1]/div[1]/div[3]/div[2]/div/div/div[4]/div[2]/div/div/div[3]/div/table/tbody/tr[1]/td[4]/div/div/div"
-    find_element = driver.find_element_by_xpath(xpath)
-    print(find_element)
-    #find_element= find_element[0]
-    #find_element.move_to_element()
-    print("1")
-    ActionChains.double_click(find_element).perform()
-    print("2")
+    Click_Father_Son_Tag_htlm_Dbl(style_tag,timeout,testcase_1, Machine_style)
+#     time.sleep(3)
+#     #xpath = "//tr[@name= '_IMTthl-EEeqc9ZermTj1qQ-row']//span[text()=\"TEST02-PC\"]"
+#     #xpath = "//*[@id=\"com_ibm_asq_common_web_ui_internal_widgets_tableViewer_TableViewer_0\"]/div[3]/div/table/tbody/tr[1]/td[4]"
+#     xpath = "/html/body/div[6]/div[2]/div[2]/div[3]/div/div[1]/div[1]/div[3]/div[2]/div/div/div[4]/div[2]/div/div/div[3]/div/table/tbody/tr[1]/td[4]/div/div"
+#     #"/html/body/div[6]/div[2]/div[2]/div[3]/div/div[1]/div[1]/div[3]/div[2]/div/div/div[4]/div[2]/div/div/div[3]/div/table/tbody/tr[1]/td[4]/div/div/div"
+#     find_element = driver.find_element_by_xpath(xpath)
+#     print(find_element)
+#     actionChains = ActionChains(driver)
+#     actionChains.double_click(find_element).perform()
+#     print("1")
+#    # ActionChains.double_click(find_element).perform()
+#     print("2")
 
 def Click_Tag_htlm2(tag, timeout_item, path_item):
     global error_flag
@@ -53,31 +53,7 @@ def Click_Tag_htlm2(tag, timeout_item, path_item):
         if(done == 0):   # try: was not run
             error_flag = 1 # have error
 
-def Click_Father_Son_Tag_htlm2(tag, timeout_item,father, path_item):
-    global error_flag
-    count = 0
-    done = 0
-    if(error_flag == 0):  
-        while(count < timeout_item):
-            try:
-                xpath = father + "//*[" +tag+ "=\"" +path_item[1]+ "\"]"
-                print(xpath)
-                find_element = driver.find_elements_by_xpath(xpath)[0]
-                display = find_element.is_displayed()  # check if the path displays
-                if(display is True):
-                    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find: "+path_item[0])) # check if the path is clickable          
-                    #print("display: " + str(display))
-                    #time.sleep(1)
-                    find_element.double_click()
-                    print("good: "+ tag + " was clicked")
-                    done = 1 
-                    break
-            except:
-                time.sleep(1)
-                print("Waiting for Click " + tag)
-                count = count + 1   
-        if(done == 0):   # try: was not run
-            error_flag = 1 # have error
+
 
 
 
