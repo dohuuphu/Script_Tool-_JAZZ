@@ -79,6 +79,7 @@ def Edit_MC(MC1, MC2, MC3):
             driver.back()
             count = count+1 
             time.sleep(3)
+            # remmove name in arr after run testsuit
         except:
             print("name1 fail")
             pass
