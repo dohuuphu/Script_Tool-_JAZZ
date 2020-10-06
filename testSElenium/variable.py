@@ -59,5 +59,6 @@ ID_tag = "@id"
 Class_tag = "@class"
 Name_tag = "@name"
 text_Tag = "text()"
+name_id= "@name"
 
 
