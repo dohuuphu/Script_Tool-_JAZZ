@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 #from Get_Data_ID import *
 from variable import *
+from variable_duy import *
 import time
 
 
