@@ -51,6 +51,7 @@ Run_testsuit_class = ["Run_testsuit_class", "dijitIcon dijitMenuItemIcon execute
 Run_filter_buildrecord_class = ["Run_filter_buildrecord_class", "image-action primary-button"]
 Select_BuildRecord_class = ["Select_BuildRecord", "dijit dijitReset dijitInline dijitRadio"]
 Ok_buildRecord_class = ["Ok_buildRecord_class", "primary-button"]
+Cancel_testsuit_class = ["Cancel_testsuit_class", "moreMargin non-primary-button"]
 
 # Tag_html
 title_tag = "@title"

@@ -1,4 +1,5 @@
-from action_funtion import *
+#from action_funtion import *
+from Read_excel import *
 #import action_funtion as act
 # #import action_funtion.*
 
@@ -14,7 +15,7 @@ def login_to_testSuit_record():
     
     # Click Planning & Browse
     Click_Tag_htlm(title_tag, timeout, Planning_title)
-    time.sleep(2) # Browse test plan still run click() if not sleep, but won't actually click
+    time.sleep(3) # Browse test plan still run click() if not sleep, but won't actually click
     Click_Tag_htlm(ID_tag, timeout, Browse_testplan_id) # text "browse test plan" can find 2 element => use ID
 
     Click_FilterText_TestPlan(timeout, filter_TestPlan)
@@ -36,8 +37,9 @@ def login_to_testSuit_record():
 def main():
     setup()
     login_to_testSuit_record()  
-    Run_TestSuit()
-    Edit_build_record()
+    #Run_TestSuit()
+    Edit_testSuit_record()
+    #Edit_build_record()
     
     # while(True):
     #     try:
