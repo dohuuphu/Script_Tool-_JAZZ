@@ -11,7 +11,7 @@ def setup2():
 
     # Click Run
     Click_Tag_htlm(aria_label_tag ,timeout, Run_btn_arialable)
-    Click_Tag_htlm(text_Tag, timeout, Run_text)
+    Click_Tag_htlm(Class_tag, timeout, Run_testsuit_class)
     Edit_build_record()
 
 

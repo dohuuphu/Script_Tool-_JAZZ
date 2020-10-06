@@ -7,6 +7,7 @@ error_flag = 0
 #login_password = "D@talogic7"
 timeout = 60
 filter_TestPlan = "1439"
+ViewBuildRecord_table = "//div[@class=\"jazz-ui-StyledBox sbBlue sbDark shadow jazz-ui-Dialog-absolute com-ibm-asq-common-web-dialog\"]"
 
 #path
 # ID:
@@ -27,7 +28,7 @@ TestPlan_linktext = ["1439","1439"]
 Login_text = ["Login_text" ,"Log In"]
 Browse_TestPlan_text = ["Browse_TestPlan_text", "Browse Test Plans"]
 Testsuit_records_text = ["Testsuit_records_text","Test Suite Execution Records"]
-Run_text = ["Run_text", "Run"]
+#Run_text = ["Run_text", "Run"]
 
 
 # Aria lable:
@@ -46,7 +47,10 @@ Clear_Table_Filters_title = ["Clear_Table_Filters", "Clear Table Filters"]
 Clear_Text_Filter_name = ["Clear_Text_Filter", "This is View Build Records table Clear Filter Text"]
 
 # Class:
+Run_testsuit_class = ["Run_testsuit_class", "dijitIcon dijitMenuItemIcon execute-icon-image"]
 Run_filter_buildrecord_class = ["Run_filter_buildrecord_class", "image-action primary-button"]
+Select_BuildRecord_class = ["Select_BuildRecord", "dijit dijitReset dijitInline dijitRadio"]
+Ok_buildRecord_class = ["Ok_buildRecord_class", "primary-button"]
 
 # Tag_html
 title_tag = "@title"
