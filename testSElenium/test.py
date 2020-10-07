@@ -9,12 +9,8 @@ def setup2():
     Send_Tag_htlm(ID_tag, timeout, IDuser_id)
     Send_Tag_htlm(ID_tag, timeout, password_id)
     Click_Tag_htlm(text_Tag, timeout, Login_text)
-    time.sleep(20)
-    string = driver.find_elements_by_xpath("//div[@id =\"com_ibm_asq_common_web_ui_internal_view_common_EditorSection_10\"]//*[@class=\"content-status-area\"]")[0]
-    textcontent = string.textContent
-    text= string.get_attribute("text()")
-    print("text", text)
-    print("textcontent: ", textcontent)
+    Click_Tag_htlm(text_Tag, timeout, Testsuit_records_text)
+    Check_Result()
 
     # # Click Run
     # Click_Tag_htlm(aria_label_tag ,timeout, Run_btn_arialable)

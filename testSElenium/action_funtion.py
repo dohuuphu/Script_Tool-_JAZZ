@@ -63,7 +63,7 @@ def Click_Text(timeout_item, path_item):
             print("Waiting for Click_Text")
             count = count + 1
 
-def Click_Father_Son_Tag_htlm(tag, timeout_item,father, path_item):
+def Click_Father_Son_Tag_htlm(tag, timeout_item,father, path_item,index = 0):
     global error_flag
     count = 0
     done = 0
@@ -72,7 +72,7 @@ def Click_Father_Son_Tag_htlm(tag, timeout_item,father, path_item):
             try:
                 xpath = father + "//*[" +tag+ "=\"" +path_item[1]+ "\"]"
                 print(xpath)
-                find_element = driver.find_elements_by_xpath(xpath)[0]
+                find_element = driver.find_elements_by_xpath(xpath)[index]
                 display = find_element.is_displayed()  # check if the path displays
                 if(display is True):
                     WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find: "+path_item[0])) # check if the path is clickable          
@@ -89,7 +89,7 @@ def Click_Father_Son_Tag_htlm(tag, timeout_item,father, path_item):
         if(done == 0):   # try: was not run
             error_flag = 1 # have error
 
-def Send_Father_SonTag_htlm(tag, timeout_item, father, path_item):
+def Send_Father_SonTag_htlm(tag, timeout_item, father, path_item, index = 0):
     global error_flag
     count = 0
     done = 0
@@ -98,7 +98,7 @@ def Send_Father_SonTag_htlm(tag, timeout_item, father, path_item):
             try:
                 xpath = father + "//*["+tag+"=\""+path_item[1]+"\"]"
                 print(xpath)
-                find_element = driver.find_elements_by_xpath(xpath)[0]
+                find_element = driver.find_elements_by_xpath(xpath)[index]
                 display = find_element.is_displayed()  # check if the path displays
                 if(display is True):
                     WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find " + path_item[0] )) # check if the path is clickable          
@@ -114,7 +114,7 @@ def Send_Father_SonTag_htlm(tag, timeout_item, father, path_item):
         if(done == 0):   # try: was not run
             error_flag = 1 # have error
 
-def Click_Father_Son_Tag_htlm_Dbl(tag, timeout_item,father, path_item):
+def Click_Father_Son_Tag_htlm_Dbl(tag, timeout_item,father, path_item, index = 0):
     global error_flag
     count = 0
     done = 0
@@ -123,7 +123,7 @@ def Click_Father_Son_Tag_htlm_Dbl(tag, timeout_item,father, path_item):
             try:
                 xpath = father + "//*[" +tag+ "=\"" +path_item[1]+ "\"]"
                 print(xpath)
-                find_element = driver.find_elements_by_xpath(xpath)[0]
+                find_element = driver.find_elements_by_xpath(xpath)[index]
                 display = find_element.is_displayed()  # check if the path displays
                 if(display is True):
                     WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find: "+path_item[0])) # check if the path is clickable          
@@ -166,7 +166,7 @@ def Click_Tag_htlm(tag, timeout_item, path_item,index = 0):
         if(done == 0):   # try: was not run
             error_flag = 1 # have error
 
-def Click_Tag_htlm_Dbl(tag, timeout_item, path_item):
+def Click_Tag_htlm_Dbl(tag, timeout_item, path_item, index = 0):
     global error_flag
     count = 0
     done = 0
@@ -175,7 +175,7 @@ def Click_Tag_htlm_Dbl(tag, timeout_item, path_item):
             try:
                 xpath = "//*[" +tag+ "=\"" +path_item[1]+ "\"]"
                 print(xpath)
-                find_element = driver.find_elements_by_xpath(xpath)[0]
+                find_element = driver.find_elements_by_xpath(xpath)[index]
                 display = find_element.is_displayed()  # check if the path displays
                 if(display is True):
                     WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find: "+path_item[0])) # check if the path is clickable          
@@ -191,7 +191,7 @@ def Click_Tag_htlm_Dbl(tag, timeout_item, path_item):
         if(done == 0):   # try: was not run
             error_flag = 1 # have error
 
-def Send_Tag_htlm(tag, timeout_item,path_item):
+def Send_Tag_htlm(tag, timeout_item,path_item, index = 0):
     global error_flag
     count = 0
     done = 0
@@ -200,7 +200,7 @@ def Send_Tag_htlm(tag, timeout_item,path_item):
             try:
                 xpath = "//*["+tag+"=\""+path_item[1]+"\"]"
                 print(xpath)
-                find_element = driver.find_elements_by_xpath(xpath)[0]
+                find_element = driver.find_elements_by_xpath(xpath)[index]
                 display = find_element.is_displayed()  # check if the path displays
                 if(display is True):
                     WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find " + path_item[0] )) # check if the path is clickable          
@@ -225,6 +225,30 @@ def Send_key_id(timeout_item, path_item, string):
 def Send_key_xpath(timeout_item, path_item, string):
     WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
     driver.find_element_by_xpath(path_item[0]).send_keys(string)
+
+def Get_attribute_Father_Son(tag, timeout_item, father, path_item, attribute, index = 0):
+    global error_flag
+    count = 0
+    done = 0
+    if(error_flag == 0):
+        while(count < timeout_item):
+            try:
+                time.sleep(1) # waiting for update attribute
+                xpath = father + "//*["+tag+"=\""+path_item[1]+"\"]"
+                print(xpath)
+                find_element = driver.find_elements_by_xpath(xpath)[index]
+                value = find_element.get_attribute(attribute)
+                print("good: "+ tag + " was gotten", value)
+                done = 1 
+                return value
+                break
+            except:
+                time.sleep(1)
+                print("Waiting for send " + tag)
+                count = count + 1   
+        if(done == 0):   # try: was not run
+            error_flag = 1 # have error
+
 
 
 #================== specific function===================
@@ -254,10 +278,20 @@ def Click_FilterText_TestPlan(timeout_item,string):
             error_flag = 1 # have error
 
 def Check_Result():
+    global complete_flag
+    complete_flag = 0
     Click_Father_Son_Tag_htlm(Class_tag, timeout, Testsuit_ExcutionRecord_table, Filter_slider_TSExcution_class) # click expand filter
+    Click_Father_Son_Tag_htlm(Name_tag, timeout, Testsuit_ExcutionRecord_table, Clear_name)
     Click_Father_Son_Tag_htlm(Class_tag, timeout, Testsuit_ExcutionRecord_table, LastResult_TSExcution_expand_class)    # click last result
-    Click_Father_Son_Tag_htlm(text_Tag, timeout, LastResult_TSExcution_table, InComplete_text)  # click incomplete
-    Click_Father_Son_Tag_htlm(text_Tag, timeout, Testsuit_ExcutionRecord_table, Run_text)
+    Click_Father_Son_Tag_htlm(text_Tag, timeout, LastResult_TSExcution_table, InProgress_text)  # click incomplete
+    Click_Father_Son_Tag_htlm(text_Tag, timeout, Testsuit_ExcutionRecord_table, Run_text) # click Run
+    while(complete_flag == 0):
+        Nofound = Get_attribute_Father_Son(text_Tag,timeout, Testsuit_ExcutionRecord_table,NoFound_text, style) 
+        if(Nofound != "display: none;"):
+            complete_flag = 1
+        else:
+            complete_flag = 0
+    print("done")
     
 
 # Global Variables

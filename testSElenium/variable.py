@@ -1,6 +1,7 @@
 
-#global_Variable
+# flag
 error_flag = 0
+complete_flag = 0
 
 #   Const
 #login_ID = "lhoang"
@@ -31,7 +32,8 @@ Login_text = ["Login_text" ,"Log In"]
 Browse_TestPlan_text = ["Browse_TestPlan_text", "Browse Test Plans"]
 Testsuit_records_text = ["Testsuit_records_text","Test Suite Execution Records"]
 Run_text = ["Run_text", "Run"]
-InComplete_text = ["InComplete_text", "Incomplete"]
+InProgress_text = ["InProgress_text", "In Progress"]
+NoFound_text = ["NoFound_text", "No items found."]
 
 
 # Aria lable:
@@ -48,6 +50,7 @@ Clear_Table_Filters_title = ["Clear_Table_Filters", "Clear Table Filters"]
 
 # Name:
 Clear_Text_Filter_name = ["Clear_Text_Filter", "This is View Build Records table Clear Filter Text"]
+Clear_name = ["Clear_name", "cancel"]
 
 # Class:
 Run_testsuit_class = ["Run_testsuit_class", "dijitIcon dijitMenuItemIcon execute-icon-image"]
@@ -68,3 +71,5 @@ text_Tag = "text()"
 name_id= "@name"
 
 
+# attribute:
+style = "style"
