@@ -8,6 +8,8 @@ error_flag = 0
 timeout = 60
 filter_TestPlan = "1439"
 ViewBuildRecord_table = "//div[@class=\"jazz-ui-StyledBox sbBlue sbDark shadow jazz-ui-Dialog-absolute com-ibm-asq-common-web-dialog\"]"
+Testsuit_ExcutionRecord_table = "//div[@id =\"com_ibm_asq_common_web_ui_internal_view_common_EditorSection_10\"]"
+LastResult_TSExcution_table =  "//table[@class='dijit dijitMenu dijitMenuPassive dijitReset dijitMenuTable']"
 
 #path
 # ID:
@@ -28,7 +30,8 @@ TestPlan_linktext = ["1439","1439"]
 Login_text = ["Login_text" ,"Log In"]
 Browse_TestPlan_text = ["Browse_TestPlan_text", "Browse Test Plans"]
 Testsuit_records_text = ["Testsuit_records_text","Test Suite Execution Records"]
-#Run_text = ["Run_text", "Run"]
+Run_text = ["Run_text", "Run"]
+InComplete_text = ["InComplete_text", "Incomplete"]
 
 
 # Aria lable:
@@ -52,6 +55,8 @@ Run_filter_buildrecord_class = ["Run_filter_buildrecord_class", "image-action pr
 Select_BuildRecord_class = ["Select_BuildRecord", "dijit dijitReset dijitInline dijitRadio"]
 Ok_buildRecord_class = ["Ok_buildRecord_class", "primary-button"]
 Cancel_testsuit_class = ["Cancel_testsuit_class", "moreMargin non-primary-button"]
+LastResult_TSExcution_expand_class= ["LastResult_TSExcution_class", "toggle-edit-closed"]
+Filter_slider_TSExcution_class = ["filter_slider_TSExcution_class", "table-filter-slider dropdown-arrow-action"]
 
 # Tag_html
 title_tag = "@title"

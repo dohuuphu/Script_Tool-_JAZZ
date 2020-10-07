@@ -120,6 +120,7 @@ def Edit_MC(MC1, MC2, MC3):
         print("MC1: " + str(name1))
         print("MC2: " + str(name2))
         print("MC3: " + str(name3))
+        Check_Result()
 
 
 def Edit_testSuit_record():

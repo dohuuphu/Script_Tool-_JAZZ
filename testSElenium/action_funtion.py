@@ -4,6 +4,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains 
+from selenium.webdriver.remote.webelement import WebElement
+#from selenium.webdriver.support.select import Select
 #from Get_Data_ID import *
 from variable import *
 from variable_duy import *
@@ -251,6 +253,12 @@ def Click_FilterText_TestPlan(timeout_item,string):
         if(done == 0):   # try: was not run
             error_flag = 1 # have error
 
+def Check_Result():
+    Click_Father_Son_Tag_htlm(Class_tag, timeout, Testsuit_ExcutionRecord_table, Filter_slider_TSExcution_class) # click expand filter
+    Click_Father_Son_Tag_htlm(Class_tag, timeout, Testsuit_ExcutionRecord_table, LastResult_TSExcution_expand_class)    # click last result
+    Click_Father_Son_Tag_htlm(text_Tag, timeout, LastResult_TSExcution_table, InComplete_text)  # click incomplete
+    Click_Father_Son_Tag_htlm(text_Tag, timeout, Testsuit_ExcutionRecord_table, Run_text)
+    
 
 # Global Variables
 arrMachine1 = [1,9,3,11,15]                       # all of Test suit are selected with Machine 1

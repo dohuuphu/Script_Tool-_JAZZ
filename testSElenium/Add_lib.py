@@ -38,7 +38,7 @@ def main():
     setup()
     login_to_testSuit_record()  
     #Run_TestSuit()
-    Edit_testSuit_record()
+    Edit_testSuit_record()  # click finish and backpage 2 time
     #Edit_build_record()
     
     # while(True):
