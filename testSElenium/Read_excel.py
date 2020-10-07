@@ -66,7 +66,9 @@ def Edit_MC(MC1, MC2, MC3):
     for i in range(max_len):
         name1 = name2 = name3 =[]
         try:
-            name1 = ["name1", str(MC1[i])]
+           
+            name1 = ["name1", 0] #str(MC1[i])]
+            #if(name1[1] == 0): make_error= 1/0  #  make error to exit try
             Click_Tag_htlm(text_Tag, timeout, name1)
             Click_Tag_htlm(aria_label_tag ,timeout, Run_btn_arialable, count)
             Click_Tag_htlm(Class_tag, timeout, Run_testsuit_class, count)
@@ -79,6 +81,10 @@ def Edit_MC(MC1, MC2, MC3):
             driver.back()
             count = count+1 
             time.sleep(3)
+            if(error_flag ==  1):
+                print("error_flag = 1")
+                break
+
             # remmove name in arr after run testsuit
         except:
             print("name1 fail")

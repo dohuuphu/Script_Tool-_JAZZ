@@ -7,6 +7,7 @@ from Read_excel import *
 def login_to_testSuit_record():
     # Login to webpage
     Send_Tag_htlm(ID_tag, timeout, IDuser_id)
+    print("error_flag", error_flag)
     Send_Tag_htlm(ID_tag, timeout, password_id)
     Click_Tag_htlm(text_Tag, timeout, Login_text)
    
@@ -39,30 +40,13 @@ def main():
     login_to_testSuit_record()  
     #Run_TestSuit()
     Edit_testSuit_record()  # click finish and backpage 2 time
-    
-    # while(True):
-    #     try:
-    #         print("try try try")
-    #         a=0
-    #         b=1
-    #         break
-    #     except:
-    #         print("except")
 
 
 
 if __name__ == "__main__":
-    main()
-    if(error_flag != 0):
-        try:
-            error_flag == 0
-            main()
-            if(error_flag != 0): 
-                print("can't solve")
-                exit(1)
-            
-        except:
-            exit(1)
-    
+    while(True):
+        main()
+        if(exit_flag == 1):
+            break
 
 

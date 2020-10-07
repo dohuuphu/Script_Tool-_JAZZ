@@ -1,13 +1,12 @@
 from action_funtion import *
-
+from variable import *
+#global error_flag
 def setup2():
+    global error_flag
     driver.get("https://rationalcld.dl.net/qm/web/console/ID%20%28Test%29#action=com.ibm.rqm.planning.home.actionDispatcher&subAction=viewTestPlan&id=1439")
-    
-    #driver.maximize_window()
-
-    # Login to webpage
     Send_Tag_htlm(ID_tag, timeout, IDuser_id)
     Send_Tag_htlm(ID_tag, timeout, password_id)
+    print("error", error_flag)
     Click_Tag_htlm(text_Tag, timeout, Login_text)
     Click_Tag_htlm(text_Tag, timeout, Testsuit_records_text)
     Check_Result()

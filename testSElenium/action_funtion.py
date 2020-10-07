@@ -88,6 +88,8 @@ def Click_Father_Son_Tag_htlm(tag, timeout_item,father, path_item,index = 0):
                 count = count + 1   
         if(done == 0):   # try: was not run
             error_flag = 1 # have error
+    else:
+        print("error_Flag =1")
 
 def Send_Father_SonTag_htlm(tag, timeout_item, father, path_item, index = 0):
     global error_flag
@@ -113,6 +115,8 @@ def Send_Father_SonTag_htlm(tag, timeout_item, father, path_item, index = 0):
                 count = count + 1   
         if(done == 0):   # try: was not run
             error_flag = 1 # have error
+    else:
+        print("error_Flag =1")
 
 def Click_Father_Son_Tag_htlm_Dbl(tag, timeout_item,father, path_item, index = 0):
     global error_flag
@@ -138,6 +142,8 @@ def Click_Father_Son_Tag_htlm_Dbl(tag, timeout_item,father, path_item, index = 0
                 count = count + 1   
         if(done == 0):   # try: was not run
             error_flag = 1 # have error
+    else:
+        print("error_Flag =1")
 
 
 def Click_Tag_htlm(tag, timeout_item, path_item,index = 0):
@@ -165,6 +171,8 @@ def Click_Tag_htlm(tag, timeout_item, path_item,index = 0):
                 count = count + 1   
         if(done == 0):   # try: was not run
             error_flag = 1 # have error
+    else:
+        print("error_Flag =1")
 
 def Click_Tag_htlm_Dbl(tag, timeout_item, path_item, index = 0):
     global error_flag
@@ -190,6 +198,8 @@ def Click_Tag_htlm_Dbl(tag, timeout_item, path_item, index = 0):
                 count = count + 1   
         if(done == 0):   # try: was not run
             error_flag = 1 # have error
+    else:
+        print("error_Flag = 1")
 
 def Send_Tag_htlm(tag, timeout_item,path_item, index = 0):
     global error_flag
@@ -215,6 +225,9 @@ def Send_Tag_htlm(tag, timeout_item,path_item, index = 0):
                 count = count + 1   
         if(done == 0):   # try: was not run
             error_flag = 1 # have error
+            print("got a error:", error_flag)
+    else:
+        print("error_Flag =1")
       
 
 def Send_key_id(timeout_item, path_item, string):
@@ -248,6 +261,8 @@ def Get_attribute_Father_Son(tag, timeout_item, father, path_item, attribute, in
                 count = count + 1   
         if(done == 0):   # try: was not run
             error_flag = 1 # have error
+    else:
+        print("error_Flag =1")
 
 
 
@@ -292,7 +307,6 @@ def Check_Result():
         else:
             complete_flag = 0
     print("done")
-    
 
 # Global Variables
 arrMachine1 = [1,9,3,11,15]                       # all of Test suit are selected with Machine 1

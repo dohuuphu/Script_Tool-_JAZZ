@@ -6,7 +6,7 @@ complete_flag = 0
 #   Const
 #login_ID = "lhoang"
 #login_password = "D@talogic7"
-timeout = 60
+timeout = 0
 filter_TestPlan = "1439"
 ViewBuildRecord_table = "//div[@class=\"jazz-ui-StyledBox sbBlue sbDark shadow jazz-ui-Dialog-absolute com-ibm-asq-common-web-dialog\"]"
 Testsuit_ExcutionRecord_table = "//div[@id =\"com_ibm_asq_common_web_ui_internal_view_common_EditorSection_10\"]"
