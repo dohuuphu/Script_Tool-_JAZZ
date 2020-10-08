@@ -2,7 +2,12 @@
 # flag
 error_flag = 0
 complete_flag = 0
-
+end_flag = 0
+get_data_excel = 0
+save_forloop = 0
+MC1 =[]
+MC2 =[]
+MC3 =[]
 #   Const
 #login_ID = "lhoang"
 #login_password = "D@talogic7"
@@ -69,6 +74,7 @@ Class_tag = "@class"
 Name_tag = "@name"
 text_Tag = "text()"
 name_id= "@name"
+style_tag = "@style"
 
 
 # attribute:

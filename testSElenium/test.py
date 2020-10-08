@@ -41,8 +41,9 @@ def setup_win():
 def main():
     #global er
     #setup2()
-    setup_win()
-
+    #setup_win()
+    for a in len(5):
+        print("ấ")
 
 if __name__ == "__main__":
     main()

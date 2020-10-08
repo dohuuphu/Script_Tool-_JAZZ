@@ -63,82 +63,110 @@ def find_max_ArrMachine(array):
 def Edit_MC(MC1, MC2, MC3):
     name1 = name2 = name3 =[]
     count = 0
-    for i in range(max_len):
+    #i = cf.save_forloop
+    for i in range(cf.save_forloop, max_len):
         name1 = name2 = name3 =[]
-        try:
-           
-            name1 = ["name1", 0] #str(MC1[i])]
-            #if(name1[1] == 0): make_error= 1/0  #  make error to exit try
-            Click_Tag_htlm(text_Tag, timeout, name1)
-            Click_Tag_htlm(aria_label_tag ,timeout, Run_btn_arialable, count)
-            Click_Tag_htlm(Class_tag, timeout, Run_testsuit_class, count)
-            Edit_build_record()
-            time.sleep(5)
-            print(" CLICK CANCEL, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
-            Click_Tag_htlm(Class_tag, timeout, Cancel_testsuit_class)
-            print(" BACKKKKKKKKKK, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
-            time.sleep(3)
-            driver.back()
-            count = count+1 
-            time.sleep(3)
-            if(error_flag ==  1):
+        try:   # Machine 1 
+            if(cf.error_flag ==  1):
                 print("error_flag = 1")
                 break
-
-            # remmove name in arr after run testsuit
+            name1 = ["name1", str(MC1[i])]
+            if(name1[1] != "0"):  # name1 = 0 when that test_suit was run
+                Click_Tag_htlm(cf.text_Tag, cf.timeout, name1)
+                if(cf.error_flag ==  0): # if test_suit was Clicked, page_path + 1
+                    count = count + 1
+                Click_Tag_htlm(cf.aria_label_tag, cf.timeout, cf.Run_btn_arialable, count-1)
+                Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Run_testsuit_class, count-1)
+                Edit_build_record()
+                time.sleep(5)
+                print(" CLICK CANCEL, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+                Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Cancel_testsuit_class)
+                print(" BACKKKKKKKKKK, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+                time.sleep(3)
+                driver.back()  
+                time.sleep(3)
+                if(cf.error_flag ==  0): # make sure rename test_suit after click "finish"
+                    MC1[i] = 0
         except:
             print("name1 fail")
             pass
-        try: 
+
+        try:    # Machine 2
+            if(cf.error_flag ==  1):
+                print("error_flag = 1")
+                break
             name2 = ["name2", str(MC2[i])]
-            Click_Tag_htlm(text_Tag, timeout, name2)
-            Click_Tag_htlm(aria_label_tag ,timeout, Run_btn_arialable, count)
-            Click_Tag_htlm(Class_tag, timeout, Run_testsuit_class, count)
-            Edit_build_record()
-            time.sleep(5)
-            print(" CLICK CANCEL, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
-            Click_Tag_htlm(Class_tag, timeout, Cancel_testsuit_class)
-            print(" BACKKKKKKKKKK, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
-            time.sleep(3)
-            driver.back()
-            count = count+1
-            time.sleep(3)
+            if(name2[1] != "0"):  # name2 = 0 when that test_suit was run
+                Click_Tag_htlm(cf.text_Tag, cf.timeout, name2)
+                if(cf.error_flag ==  0): # if test_suit was Clicked page_path + 1
+                    count = count + 1
+                Click_Tag_htlm(cf.aria_label_tag ,cf.timeout, cf.Run_btn_arialable, count-1)
+                Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Run_testsuit_class, count-1)
+                Edit_build_record()
+                time.sleep(3)
+                print(" CLICK CANCEL, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+                Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Cancel_testsuit_class)
+                print(" BACKKKKKKKKKK, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+                time.sleep(3)
+                driver.back()  
+                time.sleep(3)
+                if(cf.error_flag ==  0): # make sure rename test_suit after click "finish"
+                    MC2[i] = 0
         except:
             print("name2 fail")
             pass
-        try: 
+
+        try:    # Machine 3
+            if(cf.error_flag ==  1):
+                print("error_flag = 1")
+                break
             name3 = ["name3", str(MC3[i])] 
-            Click_Tag_htlm(text_Tag, timeout, name3)
-            Click_Tag_htlm(aria_label_tag ,timeout, Run_btn_arialable, count)
-            Click_Tag_htlm(Class_tag, timeout, Run_testsuit_class, count)
-            Edit_build_record()
-            time.sleep(5)
-            print(" CLICK CANCEL, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
-            Click_Tag_htlm(Class_tag, timeout, Cancel_testsuit_class)
-            print(" BACKKKKKKKKKK, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
-            time.sleep(3)
-            driver.back()
-            count = count+1
-            time.sleep(3)
+            if(name3[1] != "0"):  # name3 = 0 when that test_suit was run
+                Click_Tag_htlm(cf.text_Tag, cf.timeout, name3)
+                if(cf.error_flag ==  0): # if test_suit was Clicked page_path + 1
+                    count = count + 1
+                Click_Tag_htlm(cf.aria_label_tag, cf.timeout, cf.Run_btn_arialable, count-1)
+                Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Run_testsuit_class, count-1)
+                Edit_build_record()
+                time.sleep(3)
+                print(" CLICK CANCEL, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+                Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Cancel_testsuit_class)
+                print(" BACKKKKKKKKKK, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+                time.sleep(3)
+                driver.back()  
+                time.sleep(3)
+                if(cf.error_flag ==  0): # make sure rename test_suit after click "finish"
+                    MC3[i] = 0
+                
         except:
             print("name3 fail")
             pass
         print("MC1: " + str(name1))
         print("MC2: " + str(name2))
         print("MC3: " + str(name3))
-        Check_Result()
+        if(cf.error_flag ==  0):
+            Check_Result()
+            cf.save_forloop = i+1
 
 
-def Edit_testSuit_record():
-    MC1 = find_setup_MC1()
-    MC2 = find_setup_MC2()
-    MC3 = find_setup_MC3()
-    # print("MC1: " + str(MC1))
-    # print("MC2: " + str(MC2))
-    # print("MC3: " + str(MC3))
-    MC_Array = [MC1, MC2, MC3]
-    find_max_ArrMachine(MC_Array)
-    Edit_MC(MC1, MC2, MC3)
+        if(i == (max_len - 1) and cf.error_flag ==  0): # end_flag =1 when run full for loop
+            cf.end_flag = 1
+        else: cf.end_flag = 0
+
+
+def Edit_testSuit_record():    
+    if(cf.error_flag == 0):
+        if(cf.get_data_excel == 0):
+            cf.MC1 = find_setup_MC1()
+            cf.MC2 = find_setup_MC2()
+            cf.MC3 = find_setup_MC3()
+            # print("MC1: " + str(MC1))
+            # print("MC2: " + str(MC2))
+            # print("MC3: " + str(MC3))
+            MC_Array = [cf.MC1, cf.MC2, cf.MC3]
+            find_max_ArrMachine(MC_Array)
+            cf.get_data_excel = 1
+        Edit_MC(cf.MC1, cf.MC2, cf.MC3)
 
 # if __name__ == "__main__":
 #     main()
