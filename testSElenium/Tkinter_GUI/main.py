@@ -11,14 +11,17 @@ def setup_win():
 
     #create label
     lable = ttk.Label(win, text = "222")
-    lable.grid(column = 100 , row = 100)
+    lable.grid(column = 0 , row = 0)
     #create button
     button = ttk.Button(win, text= 'run', command = show_message )
-    button.grid(column = 1, row = 0)
+    button.grid(column = 2, row = 0)
     win.mainloop()
 
 
 def main():
+    print("a: ", lib.a)
+    lib.plus()
+    print("a: ", lib.a)
     setup_win()
 
 

@@ -6,9 +6,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains 
 from selenium.webdriver.remote.webelement import WebElement
 #from selenium.webdriver.support.select import Select
-#from Get_Data_ID import *
-from variable import *
-from variable_duy import *
+import variable as cf
+#from variable import *
+#from variable_duy import vd
 import time
 
 
@@ -205,7 +205,7 @@ def Send_Tag_htlm(tag, timeout_item,path_item, index = 0):
     global error_flag
     count = 0
     done = 0
-    if(error_flag == 0):
+    if(cf.error_flag == 0):
         while(count < timeout_item):
             try:
                 xpath = "//*["+tag+"=\""+path_item[1]+"\"]"
@@ -224,8 +224,8 @@ def Send_Tag_htlm(tag, timeout_item,path_item, index = 0):
                 print("Waiting for send " + tag)
                 count = count + 1   
         if(done == 0):   # try: was not run
-            error_flag = 1 # have error
-            print("got a error:", error_flag)
+            cf.error_flag = 1 # have error
+            print("got a error:", cf.error_flag)
     else:
         print("error_Flag =1")
       
