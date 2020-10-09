@@ -7,7 +7,7 @@ from tkinter import  ttk, messagebox
 
 def setup2():
     global error_flag
-    driver.get("https://rationalcld.dl.net/qm/web/console/ID%20%28Test%29#action=com.ibm.rqm.planning.home.actionDispatcher&subAction=viewTestPlan&id=1439")
+    cf.driver.get("https://rationalcld.dl.net/qm/web/console/ID%20%28Test%29#action=com.ibm.rqm.planning.home.actionDispatcher&subAction=viewTestPlan&id=1439")
     Send_Tag_htlm(cf.ID_tag, cf.timeout, cf.IDuser_id)
     print("error", cf.error_flag)
     Send_Tag_htlm(cf.ID_tag, cf.timeout, cf.password_id)

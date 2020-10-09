@@ -83,7 +83,7 @@ def Edit_MC(MC1, MC2, MC3):
                 Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Cancel_testsuit_class)
                 print(" BACKKKKKKKKKK, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
                 time.sleep(3)
-                driver.back()  
+                cf.driver.back()  
                 time.sleep(3)
                 if(cf.error_flag ==  0): # make sure rename test_suit after click "finish"
                     MC1[i] = 0
@@ -108,7 +108,7 @@ def Edit_MC(MC1, MC2, MC3):
                 Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Cancel_testsuit_class)
                 print(" BACKKKKKKKKKK, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
                 time.sleep(3)
-                driver.back()  
+                cf.driver.back()  
                 time.sleep(3)
                 if(cf.error_flag ==  0): # make sure rename test_suit after click "finish"
                     MC2[i] = 0
@@ -133,7 +133,7 @@ def Edit_MC(MC1, MC2, MC3):
                 Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Cancel_testsuit_class)
                 print(" BACKKKKKKKKKK, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
                 time.sleep(3)
-                driver.back()  
+                cf.driver.back()  
                 time.sleep(3)
                 if(cf.error_flag ==  0): # make sure rename test_suit after click "finish"
                     MC3[i] = 0

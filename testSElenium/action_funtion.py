@@ -12,38 +12,39 @@ import variable as cf
 import time
 
 
-PATH = r"C:\Users\pdo2\Desktop\Script Tool\Src\Driver\chromedriver84.exe"
+# PATH = r"C:\Users\pdo2\Desktop\Script Tool\Src\Driver\chromedriver84.exe"
 #PATH = r"C:\Users\dnguyen4\Documents\Script_Tool-_JAZZ\Driver\chromedriver85.exe"
 # PATH = r"C:\Users\dnguyen4\Documents\Script_Tool-_JAZZ\Driver\chromedriver84.exe"
-driver = webdriver.Chrome(PATH)
 
+cf.driver = webdriver.Chrome(cf.PATH)
 def setup():
-    driver.get("https://rationalcld.dl.net/qm")
-    #driver.maximize_window()
+    
+    cf.driver.get("https://rationalcld.dl.net/qm")
+    #cf.driver.maximize_window()
 
 def Click_button_id(timeout_item, path_item):
-    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.ID, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
-    driver.find_element_by_id(path_item[0]).click()
+    WebDriverWait(cf.driver, timeout_item).until(EC.presence_of_element_located((By.ID, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
+    cf.driver.find_element_by_id(path_item[0]).click()
     print("buttin_id was clicked")
  
 def Click_button_xpath(timeout_item, path_item):  
-    WebDriverWait(driver, timeout_item).until(EC.element_to_be_clickable((By.XPATH, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
-    driver.find_element_by_xpath(path_item[0]).click()
+    WebDriverWait(cf.driver, timeout_item).until(EC.element_to_be_clickable((By.XPATH, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
+    cf.driver.find_element_by_xpath(path_item[0]).click()
 
 def Click_button_name(timeout_item, path_item):  ########
-    WebDriverWait(driver, timeout_item).until(EC.element_to_be_clickable((By.NAME, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
-    driver.find_element_by_name(path_item[0]).click()
+    WebDriverWait(cf.driver, timeout_item).until(EC.element_to_be_clickable((By.NAME, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
+    cf.driver.find_element_by_name(path_item[0]).click()
     print("asdasdasd")
 
 def Click_LinkText(timeout_item, path_item):
     global error_flag
     if(cf.error_flag == 0):
         try:        # USE try to fix error: "Message: stale element reference: element is not attached to the page document"
-            WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.LINK_TEXT, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
-            driver.find_element_by_link_text(path_item[0]).click()
+            WebDriverWait(cf.driver, timeout_item).until(EC.presence_of_element_located((By.LINK_TEXT, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
+            cf.driver.find_element_by_link_text(path_item[0]).click()
         except: 
-            WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.LINK_TEXT, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
-            driver.find_element_by_link_text(path_item[0]).click()
+            WebDriverWait(cf.driver, timeout_item).until(EC.presence_of_element_located((By.LINK_TEXT, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
+            cf.driver.find_element_by_link_text(path_item[0]).click()
     else:
         print("error_Flag =1")
     
@@ -51,17 +52,16 @@ def Click_Text(timeout_item, path_item):
     count = 0
     while(count < timeout_item):
         try:
-            time.sleep(2) # it still run click() if not sleep, but won't actually click
-            xpath = "//*[text()="+path_item+"]"
-            #print(driver.find_elements_by_xpath(xpath))
-            find_element = driver.find_elements_by_xpath(xpath)[0]
-            display = find_element.is_displayed()  # check if the path displays
-            if(display is True):
-                print("display: " + str(display))
-                WebDriverWait(driver, timeout_item).until(EC.element_to_be_clickable((By.XPATH, xpath)), message=("Can not find: " + path_item[1])) # check if the path is clickable                       
-                find_element.click()   
-                print("good: Text was clicked")             
-                break         
+            #time.sleep(2) # it still run click() if not sleep, but won't actually click
+            xpath = "//*[text()='"+path_item[1]+"']"
+            time.sleep(1)
+            count = count + 1
+            print(xpath)
+            find_element = cf.driver.find_elements_by_xpath(xpath)[0]
+            WebDriverWait(cf.driver, timeout_item).until(EC.element_to_be_clickable((By.XPATH, xpath)), message=("Can not find: " + path_item[1])) # check if the path is clickable                       
+            find_element.click()   
+            print("good: Text was clicked")             
+            break         
         except:
             time.sleep(1)
             print("Waiting for Click_Text")
@@ -78,10 +78,10 @@ def Click_Father_Son_Tag_htlm(tag, timeout_item,father, path_item,index = 0):
                 print(xpath)
                 time.sleep(1)
                 count = count + 1 
-                find_element = driver.find_elements_by_xpath(xpath)[index]
+                find_element = cf.driver.find_elements_by_xpath(xpath)[index]
                 display = find_element.is_displayed()  # check if the path displays
                 if(display is True):
-                    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find: "+path_item[0])) # check if the path is clickable          
+                    WebDriverWait(cf.driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find: "+path_item[0])) # check if the path is clickable          
                     #print("display: " + str(display))
                     #time.sleep(1)
                     find_element.click()
@@ -108,10 +108,10 @@ def Send_Father_SonTag_htlm(tag, timeout_item, father, path_item, index = 0):
                 print(xpath)
                 time.sleep(1)
                 count = count + 1 
-                find_element = driver.find_elements_by_xpath(xpath)[index]
+                find_element = cf.driver.find_elements_by_xpath(xpath)[index]
                 display = find_element.is_displayed()  # check if the path displays
                 if(display is True):
-                    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find " + path_item[0] )) # check if the path is clickable          
+                    WebDriverWait(cf.driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find " + path_item[0] )) # check if the path is clickable          
                     #print("display: " + str(display))
                     find_element.send_keys(path_item[2])
                     print("good: "+ tag + " was sent")
@@ -137,11 +137,11 @@ def Click_Father_Son_Tag_htlm_Dbl(tag, timeout_item,father, path_item, index = 0
                 print(xpath)
                 time.sleep(1)
                 count = count + 1 
-                find_element = driver.find_elements_by_xpath(xpath)[index]
+                find_element = cf.driver.find_elements_by_xpath(xpath)[index]
                 display = find_element.is_displayed()  # check if the path displays
                 if(display is True):
-                    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find: "+path_item[0])) # check if the path is clickable          
-                    actionChains = ActionChains(driver)
+                    WebDriverWait(cf.driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find: "+path_item[0])) # check if the path is clickable          
+                    actionChains = ActionChains(cf.driver)
                     actionChains.double_click(find_element).perform()
                     print("good: "+ tag + " was clicked")
                     done = 1 
@@ -167,10 +167,10 @@ def Click_Tag_htlm(tag, timeout_item, path_item,index = 0):
                 print(xpath)
                 time.sleep(1)
                 count = count + 1 
-                find_element = driver.find_elements_by_xpath(xpath)[index]
+                find_element = cf.driver.find_elements_by_xpath(xpath)[index]
                 display = find_element.is_displayed()  # check if the path displays
                 if(display is True):
-                    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find: "+path_item[0])) # check if the path is clickable          
+                    WebDriverWait(cf.driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find: "+path_item[0])) # check if the path is clickable          
                     #print("display: " + str(display))
                     #time.sleep(1)
                     find_element.click()
@@ -197,11 +197,11 @@ def Click_Tag_htlm_Dbl(tag, timeout_item, path_item, index = 0):
                 print(xpath)
                 time.sleep(1)
                 count = count + 1 
-                find_element = driver.find_elements_by_xpath(xpath)[index]
+                find_element = cf.driver.find_elements_by_xpath(xpath)[index]
                 display = find_element.is_displayed()  # check if the path displays
                 if(display is True):
-                    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find: "+path_item[0])) # check if the path is clickable          
-                    actionChains = ActionChains(driver)
+                    WebDriverWait(cf.driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find: "+path_item[0])) # check if the path is clickable          
+                    actionChains = ActionChains(cf.driver)
                     actionChains.double_click(find_element).perform()
                     print("good: "+ tag + " was clicked")
                     done = 1 
@@ -227,10 +227,10 @@ def Send_Tag_htlm(tag, timeout_item,path_item, index = 0):
                 print(xpath)
                 time.sleep(1)
                 count = count + 1 
-                find_element = driver.find_elements_by_xpath(xpath)[index]
+                find_element = cf.driver.find_elements_by_xpath(xpath)[index]
                 display = find_element.is_displayed()  # check if the path displays
                 if(display is True):
-                    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find " + path_item[0] )) # check if the path is clickable          
+                    WebDriverWait(cf.driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find " + path_item[0] )) # check if the path is clickable          
                     #print("display: " + str(display))
                     find_element.send_keys(path_item[2])
                     print("good: "+ tag + " was sent")
@@ -247,14 +247,14 @@ def Send_Tag_htlm(tag, timeout_item,path_item, index = 0):
         print("error_Flag =1")
       
 
-def Send_key_id(timeout_item, path_item, string):
-    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.ID, path_item[0])), message=("Can not find: "))        # wait until item exits
-    driver.find_element_by_id(path_item[0]).send_keys(string)
+def Send_key_id(timeout_item, path_item):
+    WebDriverWait(cf.driver, timeout_item).until(EC.presence_of_element_located((By.ID, path_item[1])) )        # wait until item exits
+    cf.driver.find_element_by_id(path_item[1]).send_keys(path_item[2])
     
 
-def Send_key_xpath(timeout_item, path_item, string):
-    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
-    driver.find_element_by_xpath(path_item[0]).send_keys(string)
+def Send_key_xpath(timeout_item, path_item):
+    WebDriverWait(cf.driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, path_item[1])))        # wait until item exits
+    cf.driver.find_element_by_xpath(path_item[1]).send_keys(path_item[2])
 
 def Get_attribute_Father_Son(tag, timeout_item, father, path_item, attribute, index = 0):
     global error_flag
@@ -268,7 +268,7 @@ def Get_attribute_Father_Son(tag, timeout_item, father, path_item, attribute, in
                 print(xpath)
                 time.sleep(1)
                 count = count + 1 
-                find_element = driver.find_elements_by_xpath(xpath)[index]
+                find_element = cf.driver.find_elements_by_xpath(xpath)[index]
                 value = find_element.get_attribute(attribute)
                 print("good: "+ tag + " was gotten", value)
                 done = 1 
@@ -297,10 +297,10 @@ def Click_FilterText_TestPlan(timeout_item,string):
                 xpath = "//input[@aria-label='This is Test Plans table: filter text input']"
                 time.sleep(1)
                 count = count + 1 
-                find_element = driver.find_elements_by_xpath(xpath)[0]
+                find_element = cf.driver.find_elements_by_xpath(xpath)[0]
                 display = find_element.is_displayed()  # check if the path displays
                 if(display is True):
-                    WebDriverWait(driver, timeout_item).until(EC.element_to_be_clickable((By.XPATH, xpath)), message=("Can not find: Filter Test plan ")) # check if the path is clickable          
+                    WebDriverWait(cf.driver, timeout_item).until(EC.element_to_be_clickable((By.XPATH, xpath)), message=("Can not find: Filter Test plan ")) # check if the path is clickable          
                     print("display: " + str(display))
                     find_element.click()
                     print("good: element was clicked")
@@ -382,11 +382,11 @@ def Edit_build_record():
 #     time.sleep(3)
 #     xpath = "//tr[@name= '_IMTthl-EEeqc9ZermTj1qQ-row']//span[text()=\"TEST02-PC\"]"
 
-# #     find_element = driver.find_element_by_xpath(xpath)
+# #     find_element = cf.driver.find_element_by_xpath(xpath)
 # #     print(find_element)
-# #     actionChains = ActionChains(driver)
+# #     actionChains = ActionChains(cf.driver)
 # #     actionChains.double_click(find_element).perform()
 # #     print("1")
 # #    # ActionChains.double_click(find_element).perform()
 # #     print("2")
-    #driver.back()
+    #cf.driver.back()

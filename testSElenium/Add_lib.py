@@ -1,15 +1,15 @@
-#from action_funtion import *
+import threading
 from Read_excel import *
-#import action_funtion as act
-# #import action_funtion.*
+import tkinter as tk
+from tkinter import  ttk, messagebox
 
 # ============================= Script =====================
 def login_to_testSuit_record():
     # Login to webpage
-    Send_Tag_htlm(cf.ID_tag, cf.timeout, cf.IDuser_id)
-    print("error_flag", cf.error_flag)
-    Send_Tag_htlm(cf.ID_tag, cf.timeout, cf.password_id)
-    Click_Tag_htlm(cf.text_Tag, cf.timeout, cf.Login_text)
+    # Send_Tag_htlm(cf.ID_tag, cf.timeout, cf.IDuser_id)
+    # print("error_flag", cf.error_flag)
+    # Send_Tag_htlm(cf.ID_tag, cf.timeout, cf.password_id)
+    # Click_Tag_htlm(cf.text_Tag, cf.timeout, cf.Login_text)
    
     # Click link ** ID_test **
     Click_LinkText(cf.timeout, cf.ID_test_linktext)
@@ -30,29 +30,82 @@ def login_to_testSuit_record():
     Click_Tag_htlm(cf.text_Tag, cf.timeout, cf.Testsuit_records_text)
     
 
-
-
-
-
-
-def main():
+def Step():
     setup()
     login_to_testSuit_record()  
     #Run_TestSuit()
     Edit_testSuit_record()  # click finish and backpage 2 time
-    driver.delete_all_cookies()
+    cf.driver.delete_all_cookies()
 
-
-
-if __name__ == "__main__":
+def main():
+    check_page_login = threading.Thread(name='check_login', target=check_login, daemon= True)
+    check_page_login.start()
+    id_entry = entry_id.get()
+    pass_entry = entry_pass.get()
+    cf.IDuser_id = np.append(cf.IDuser_id, id_entry )
+    cf.password_id = np.append(cf.password_id, pass_entry )
     while(True):
         cf.error_flag = 0
         cf.complete_flag = 0
         cf.end_flag = 0
         print("ok let's start")
-        main()
+        Step()
         if(cf.end_flag == 1):
-            driver.quit()
+            cf.driver.quit()
             break
+
+def check_login():
+    while(True):
+        print("fill login")
+        try:
+            Send_key_id(cf.timeout, cf.IDuser_id)
+            Send_key_id(cf.timeout, cf.password_id)
+            Click_Text(cf.timeout, cf.Login_text)
+            time.sleep(10)
+        except: 
+            pass
+        print("End login")
+
+
+
+
+
+if __name__ == "__main__":
+    win = tk.Tk()
+    win.title("Script Tool")
+    win.geometry("280x160")
+    # frame = ttk.Frame(win, width = 300, height = 250)
+    # frame.grid(win)
+
+    # create label
+    label_content = ttk.Label(win, text = " Run Test Plan On Jazz_page" )
+    label_id = ttk.Label(win, text="ID User:")
+    label_pass = ttk.Label(win, text="Password:")
+    label_TestPlan_id = ttk.Label(win, text="TestPlan ID:")
+
+    label_content.place(relx=0.5, rely=0.05, anchor=tk.N)
+    label_id.place(relx=0.20, rely=0.25, anchor=tk.N)
+    label_pass.place(relx=0.20, rely=0.45, anchor=tk.N)
+    label_TestPlan_id.place(relx=0.20, rely=0.65, anchor=tk.N)
+   # lable_pass.pack(win, sticky = tk.E + tk.W)
+
+    # create text entry
+    entry_id = ttk.Entry(win)
+    entry_pass = ttk.Entry(win, show = "*")
+    entry_Testplan = ttk.Entry(win)
+    
+    entry_id.place(relx=0.65, rely=0.25, anchor=tk.N)
+    entry_pass.place(relx=0.65, rely=0.45, anchor=tk.N)
+    entry_Testplan.place(relx=0.65, rely=0.65, anchor=tk.N)
+
+    # create button
+    button = ttk.Button(win, text='Run', command = main)
+    #button.bind("<Button-1>", main)
+    #button.bind("<Button-1>", )
+    button.place(relx=0.5, rely=1, anchor = tk.S)
+
+    win.mainloop()
+
+    
 
 

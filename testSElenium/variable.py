@@ -1,4 +1,5 @@
 
+
 # flag
 error_flag = 0
 complete_flag = 0
@@ -11,7 +12,9 @@ MC3 =[]
 #   Const
 #login_ID = "lhoang"
 #login_password = "D@talogic7"
-timeout = 30
+driver = 0
+PATH = r"C:\Users\pdo2\Desktop\Script Tool\Src\Driver\chromedriver84.exe"
+timeout = 10
 filter_TestPlan = "1439"
 ViewBuildRecord_table = "//div[@class=\"jazz-ui-StyledBox sbBlue sbDark shadow jazz-ui-Dialog-absolute com-ibm-asq-common-web-dialog\"]"
 Testsuit_ExcutionRecord_table = "//div[@id =\"com_ibm_asq_common_web_ui_internal_view_common_EditorSection_10\"]"
@@ -19,8 +22,8 @@ LastResult_TSExcution_table =  "//table[@class='dijit dijitMenu dijitMenuPassive
 
 #path
 # ID:
-IDuser_id = ['IDuser_id', 'jazz_app_internal_LoginWidget_0_userId', "lhoang"]
-password_id = ["password_id", "jazz_app_internal_LoginWidget_0_password", "D@talogic7"]
+IDuser_id = ['IDuser_id', 'jazz_app_internal_LoginWidget_0_userId']#, "lhoang"]
+password_id = ["password_id", "jazz_app_internal_LoginWidget_0_password"]#, "D@talogic7"]
 Plannningbox_id = ["Plannningbox_id", "jazz_ui_MenuPopup_7"]
 Browse_testplan_id = ["Browse_testplan_id","jazz_ui_menu_MenuItem_0_text"]
 Runbutton_id = ["Runbutton_id", "dijit_MenuItem_12_text"]
