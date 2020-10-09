@@ -2,6 +2,7 @@ import threading
 from Read_excel import *
 import tkinter as tk
 from tkinter import  ttk, messagebox
+from PIL import Image, ImageTk
 
 # ============================= Script =====================
 def login_to_testSuit_record():
@@ -20,8 +21,6 @@ def login_to_testSuit_record():
     Click_Tag_htlm(cf.ID_tag, cf.timeout, cf.Browse_testplan_id) # text "browse test plan" can find 2 element => use ID
 
     Click_FilterText_TestPlan(cf.timeout, cf.filter_TestPlan)
-    # Click_Tag_htlm(aria_label_tag, timeout, Filter_TsPlan_arialable)
-    # Send_Tag_htlm(aria_label_tag, timeout,Filter_TsPlan_arialable, filter_TestPlan)
 
     print("filled 1439")
     Click_LinkText(cf.timeout, cf.TestPlan_linktext)
@@ -80,15 +79,18 @@ if __name__ == "__main__":
     win = tk.Tk()
     win.title("Script Tool")
     win.geometry("280x160")
+    icon = ImageTk.PhotoImage(Image.open("datalogic.png"))
     # frame = ttk.Frame(win, width = 300, height = 250)
     # frame.grid(win)
 
     # create label
+    label_img = ttk.Label(image = icon, width = 30)
     label_content = ttk.Label(win, text = " Run Test Plan On Jazz_page" )
     label_id = ttk.Label(win, text="ID User:")
     label_pass = ttk.Label(win, text="Password:")
     label_TestPlan_id = ttk.Label(win, text="TestPlan ID:")
 
+    label_img.place(relx=0.05, rely=0.02, anchor=tk.N)
     label_content.place(relx=0.5, rely=0.05, anchor=tk.N)
     label_id.place(relx=0.20, rely=0.25, anchor=tk.N)
     label_pass.place(relx=0.20, rely=0.45, anchor=tk.N)
