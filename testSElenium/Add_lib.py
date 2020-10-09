@@ -29,6 +29,8 @@ def login_to_testSuit_record():
     #Click Test suit execution records
     Click_Tag_htlm(cf.text_Tag, cf.timeout, cf.Testsuit_records_text)
     
+def show_message():
+    messagebox.showinfo(title= 'input info', message= "u got meee :)))")
 
 def Step():
     setup()
@@ -43,7 +45,7 @@ def main():
     id_entry = entry_id.get()
     pass_entry = entry_pass.get()
     cf.IDuser_id = np.append(cf.IDuser_id, id_entry )
-    cf.password_id = np.append(cf.password_id, pass_entry )
+    cf.password_id = np.append(cf.password_id, pass_entry)
     while(True):
         cf.error_flag = 0
         cf.complete_flag = 0
@@ -52,19 +54,23 @@ def main():
         Step()
         if(cf.end_flag == 1):
             cf.driver.quit()
+            show_message()
             break
 
 def check_login():
     while(True):
-        print("fill login")
         try:
-            Send_key_id(cf.timeout, cf.IDuser_id)
-            Send_key_id(cf.timeout, cf.password_id)
-            Click_Text(cf.timeout, cf.Login_text)
-            time.sleep(10)
+            visible = Check_element_isDisplay(cf.login_form)
+            if(visible is True):
+                print("fill login")
+                Send_key_id(cf.timeout, cf.IDuser_id)
+                Send_key_id(cf.timeout, cf.password_id)
+                Click_Text(cf.timeout, cf.Login_text)
+                time.sleep(10)
+                print("End login")
         except: 
             pass
-        print("End login")
+       
 
 
 
