@@ -1,4 +1,1 @@
-Num,Name,Test Machine,Buid Record,Status
-1,Test 1,M1,,Yes
-2,Test 2,M2,,Yes
-3,Test 3,M3,,Yes
+Num,ID ,Name,Machine_Name,Status,Show_Status1,244409,CommandlineTest - Load configuration with Script Formatting from PC_Matrix M300N,TestExecute-PC,,TRUE2,244407,CommandlineTest - Verify simulator M300N_Matrix M300N,None,,TRUE3,244405,CommandlineTest - Verify simulator 410 2MP_Matrix M300N,TestComplete14_,,FALSE4,244403,CommandlineTest - Verify simulator M300N 772-010_Matrix M300N,None,,TRUE5,244401,CommandlineTest - Verify simulator XRF_Matrix M300N,TEST02-PC,,FALSE

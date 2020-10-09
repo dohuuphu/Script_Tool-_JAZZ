@@ -14,77 +14,63 @@ def setup2():
     Click_Tag_htlm(aria_label_tag ,timeout, Run_btn_arialable)
     Click_Tag_htlm(Class_tag, timeout, Run_testsuit_class)
     Click_Father_Son_Tag_htlm_Dbl(style_tag,timeout,testcase_1, Machine_style)
-#     time.sleep(3)
-#     #xpath = "//tr[@name= '_IMTthl-EEeqc9ZermTj1qQ-row']//span[text()=\"TEST02-PC\"]"
-#     #xpath = "//*[@id=\"com_ibm_asq_common_web_ui_internal_widgets_tableViewer_TableViewer_0\"]/div[3]/div/table/tbody/tr[1]/td[4]"
-#     xpath = "/html/body/div[6]/div[2]/div[2]/div[3]/div/div[1]/div[1]/div[3]/div[2]/div/div/div[4]/div[2]/div/div/div[3]/div/table/tbody/tr[1]/td[4]/div/div"
-#     #"/html/body/div[6]/div[2]/div[2]/div[3]/div/div[1]/div[1]/div[3]/div[2]/div/div/div[4]/div[2]/div/div/div[3]/div/table/tbody/tr[1]/td[4]/div/div/div"
-#     find_element = driver.find_element_by_xpath(xpath)
-#     print(find_element)
-#     actionChains = ActionChains(driver)
-#     actionChains.double_click(find_element).perform()
-#     print("1")
-#    # ActionChains.double_click(find_element).perform()
-#     print("2")
+    Machine_name_title_csv = "TestComplete14_"
+    # title value:
+    Machine_name_title = ["Machine_name_title", Machine_name_title_csv]
 
-def Click_Tag_htlm2(tag, timeout_item, path_item):
-    global error_flag
+
+    # title value:
+    Machine_title = ["Machine_title", "Edit"]
+    Machine_name_title = ["Machine_name_title", machine_name]
+
+    # style value:
+    Machine_style = ["Machine_style", "width: 177px;"]
+
+    #dojoattachpoint value;
+    dojoattachpoint = ["dojoattachpoint","tableContainerFormNode"]
+    #name value:
+    Machine_row_name = ["Machine_row_name", '//input[@name="com_ibm_asq_common_web_ui_internal_widgets_tableViewer_TableViewer_1-radio-group"]']
+    # Tag_html
+    style_tag = "@style"
+    title_tag = "@title"
+    dojoattachpoint_tag ="@dojoattachpoint"
+    name_tag = "@name"
+    if Machine_name_title_csv == "TestComplete14_":
+        Machine_row_father = '//tr[@name="39-row"]'
+
+        
+         
+
+
+
+
+
+
+
+    Click_Tag_htlm(title_tag, timeout, Machine_name_title)
+
+
+
+
+
+def generate_xpath(element, current):
+    child_tag = str(element.tag_name)
+    if child_tag == "html":
+        return "/html[1]" + current
+    parentElements = element.find_element_by_xpath("..")
+    childrenElements = parentElements.find_elements_by_xpath("*")
     count = 0
-    done = 0
-    if(error_flag == 0):  
-        while(count < timeout_item):
-            try:
-                xpath = "//*[" +tag+ "=\"" +path_item[1]+ "\"]"
-                print(xpath)
-                find_element = driver.find_elements_by_xpath(xpath)[0]
-                display = find_element.is_displayed()  # check if the path displays
-                if(display is True):
-                    WebDriverWait(driver, timeout_item).until(EC.presence_of_element_located((By.XPATH, xpath)), message=("Can not find: "+path_item[0])) # check if the path is clickable          
-                    #print("display: " + str(display))
-                    #time.sleep(1)
-                    find_element.click()
-                    print("good: "+ tag + " was clicked")
-                    done = 1 
-                    break
-            except:
-                time.sleep(1)
-                print("Waiting for Click " + tag)
-                count = count + 1   
-        if(done == 0):   # try: was not run
-            error_flag = 1 # have error
-
-
-
-
-
-# def generate_xpath(element, current):
-#     child_tag = str(element.tag_name)
-#     if child_tag == "html":
-#     return "/html[1]" + current
-#     parentElements = element.find_element_by_xpath("..")
-#     childrenElements = parentElements.find_elements_by_xpath("*")
-#     count = 0
-#     for e in childrenElements:
-#     childrenElementTag = e.tag_name
-#     if child_tag == childrenElementTag:
-#     count = count + 1
-#     if element == e:
-#     return generate_xpath(parentElements, "/" + child_tag + "[" + str(count) + "]" + current)
+    for e in childrenElements:
+        childrenElementTag = e.tag_name
+        if child_tag == childrenElementTag:
+            count = count + 1
+        if element == e:
+            return generate_xpath(parentElements, "/" + child_tag + "[" + str(count) + "]" + current)
 
 def main():
     setup2()
-   # inputElement = driver.find_element_by_name("This is labelSuiteStepForDialog table")
-    #generate_xpath(inputElement, "").double_click()
-    # A ='TestExecute-PC'
-    # Click_Tag_htlm(title_tag, timeout, A)
-    # xpathresult = '//*[@id="com_ibm_asq_common_web_ui_internal_widgets_tableViewer_TableViewer_0"]/div[3]/div/table/tbody/tr[1]'
-    # resultdiv = driver.find_element_by_xpath(xpathresult)
-    # resultdiv.double_click()
-    # class="clip-cell-nowrap table-cell-resize-marker"
-    # summary="This is labelSuiteStepForDialog table"
-    # name="_IMTthl-EEeqc9ZermTj1qQ-row"
-    # Class_id_choose_Machine = "clip-cell-nowrap table-cell-resize-marker"
-    # Click_Tag_htlm2(Class_tag, timeout,Class_id_choose_Machine)
+    generate_xpath()
+
    
    
 
