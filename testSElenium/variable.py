@@ -14,7 +14,9 @@ MC3 =[]
 #login_password = "D@talogic7"
 driver = 0
 # PATH = r"C:\Users\pdo2\Desktop\Script Tool\Src\Driver\chromedriver85.exe"
-PATH = r"C:\Users\dnguyen4\Documents\Script_Tool-_JAZZ\Driver\chromedriver85.exe"
+#PATH = r"C:\Users\dnguyen4\Documents\Script_Tool-_JAZZ\Driver\chromedriver85.exe"
+PATH = r"C:\Users\Laptop88\Documents\Script_Tool-_JAZZ\Driver\chromedriver85.exe"
+
 timeout = 60
 filter_TestPlan = "1439"
 ViewBuildRecord_table = "//div[@class=\"jazz-ui-StyledBox sbBlue sbDark shadow jazz-ui-Dialog-absolute com-ibm-asq-common-web-dialog\"]"
@@ -36,7 +38,8 @@ login_button_xpath = ["login_button_xpath", "//*[@id=\"jazz_app_internal_LoginWi
 
 # Linktext:
 ID_test_linktext = ["ID (Test)","ID (test)"]
-TestPlan_linktext = ["1439","1439"]
+# TestPlan_linktext = ["1439","1439"]
+TestPlan_linktext = []
 
 # Text:
 Login_text = ["Login_text" ,"Log In"]

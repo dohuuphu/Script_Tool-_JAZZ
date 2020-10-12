@@ -2,7 +2,7 @@ import threading
 from Read_excel import *
 import tkinter as tk
 from tkinter import  ttk, messagebox
-from PIL import Image, ImageTk
+#from PIL import Image, ImageTk
 
 # ============================= Script =====================
 def login_to_testSuit_record():
@@ -20,7 +20,7 @@ def login_to_testSuit_record():
     time.sleep(3) # Browse test plan still run click() if not sleep, but won't actually click
     Click_Tag_htlm(cf.ID_tag, cf.timeout, cf.Browse_testplan_id) # text "browse test plan" can find 2 element => use ID
 
-    Click_FilterText_TestPlan(cf.timeout, cf.filter_TestPlan)
+    Click_FilterText_TestPlan(cf.timeout, cf.TestPlan_linktext[0])
 
     print("filled 1439")
     Click_LinkText(cf.timeout, cf.TestPlan_linktext)
@@ -43,8 +43,11 @@ def main():
     check_page_login.start()
     id_entry = entry_id.get()
     pass_entry = entry_pass.get()
+    test_plan = entry_Testplan.get()
     cf.IDuser_id = np.append(cf.IDuser_id, id_entry )
     cf.password_id = np.append(cf.password_id, pass_entry)
+    cf.TestPlan_linktext = np.append(cf.TestPlan_linktext, test_plan)
+    cf.TestPlan_linktext = np.append(cf.TestPlan_linktext, test_plan)
     while(True):
         cf.error_flag = 0
         cf.complete_flag = 0
@@ -79,18 +82,18 @@ if __name__ == "__main__":
     win = tk.Tk()
     win.title("Script Tool")
     win.geometry("280x160")
-    icon = ImageTk.PhotoImage(Image.open("datalogic2.png"))
+    #icon = ImageTk.PhotoImage(Image.open("datalogic2.png"))
     # frame = ttk.Frame(win, width = 300, height = 250)
     # frame.grid(win)
 
     # create label
-    label_img = ttk.Label(image = icon, width = 30)
+    #label_img = ttk.Label(image = icon, width = 30)
     label_content = ttk.Label(win, text = " Run Test Plan On Jazz_page" )
     label_id = ttk.Label(win, text="ID User:")
     label_pass = ttk.Label(win, text="Password:")
     label_TestPlan_id = ttk.Label(win, text="TestPlan ID:")
 
-    label_img.place(relx=0.05, rely=0.02, anchor=tk.N)
+    #label_img.place(relx=0.05, rely=0.02, anchor=tk.N)
     label_content.place(relx=0.5, rely=0.05, anchor=tk.N)
     label_id.place(relx=0.20, rely=0.25, anchor=tk.N)
     label_pass.place(relx=0.20, rely=0.45, anchor=tk.N)

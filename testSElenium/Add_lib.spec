@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['Add_lib.py'],
-             pathex=['C:\\Users\\pdo2\\Desktop\\Script Tool\\Src\\testSElenium'],
+             pathex=['C:\\Users\\Laptop88\\Documents\\Script_Tool-_JAZZ\\testSElenium'],
              binaries=[],
              datas=[],
              hiddenimports=[],
@@ -30,4 +30,4 @@ exe = EXE(pyz,
           upx=True,
           upx_exclude=[],
           runtime_tmpdir=None,
-          console=False )
+          console=False , icon='datalogic2.ico')
