@@ -1,10 +1,10 @@
 from action_funtion import * 
-from selenium.webdriver.support.ui import WebDriverWait
+#from selenium.webdriver.support.ui import WebDriverWait
 
-Get_Machine_from_Web = ""
+# Get_Machine_from_Web = ""
 # Machine_name_title_excel = "TEST02-PC" #delete	
 
-Machine_name_title_excel = "TestExecute-PC" #delete
+#Machine_name_title_excel = "TestExecute-PC" #delete
 
 
 def setup2():
@@ -24,20 +24,20 @@ def setup2():
     # Click_Father_Son_Tag_htlm_Dbl(style_tag,timeout,testcase_1, Machine_style)
     # Get_Element_Row_Name_and_Health_Machine(10)
 
-    print(Get_TimesPage())
+    #print(Get_TimesPage())
     # Demo_Test_NumPage(7)
-    Change_Machine_For_Testcase(cf.timeout, 'TestExecute-PC',Get_TimesPage())
+    #Change_Machine_For_Testcase(cf.timeout, 'TestExecute-PC',Get_TimesPage())
 
-def Get_Text_Element():
-    global Get_Machine_from_Web
-    time.sleep(5)
-    # Click_Tag_htlm(Class_tag, timeout, Run_testsuit_class)
-    Machine_Element_link= '//td[@class="table-cell-editable"]//div[@class="clip-cell-nowrap table-cell-resize-marker"]//span'
-    Machine_Element = cf.driver.find_elements_by_xpath(Machine_Element_link)
-    Get_Machine_from_Web = Machine_Element[0].text
-    LenText = len(Get_Machine_from_Web)
-    print("length",LenText )
-    print('Get_Machine_from_Web: ',Get_Machine_from_Web)
+# def Get_Text_Element():
+#     global Get_Machine_from_Web
+#     time.sleep(5)
+#     # Click_Tag_htlm(Class_tag, timeout, Run_testsuit_class)
+#     Machine_Element_link= '//td[@class="table-cell-editable"]//div[@class="clip-cell-nowrap table-cell-resize-marker"]//span'
+#     Machine_Element = cf.driver.find_elements_by_xpath(Machine_Element_link)
+#     Get_Machine_from_Web = Machine_Element[0].text
+#     LenText = len(Get_Machine_from_Web)
+#     print("length",LenText )
+#     print('Get_Machine_from_Web: ',Get_Machine_from_Web)
 def Finish_Click():  
     time.sleep(5)
     # Click_Tag_htlm(Class_tag, timeout, Run_testsuit_class)
@@ -62,16 +62,18 @@ def Click_Next_Button_Select_Machine():
 def Change_Machine_For_Testcase(timeout_item ,Machine_name_title_excel, TimesPage):
     # Machine_name_title_csv = "TestComplete14_"
     # Machine_name_title_excel = "TestExecute-PC" #delete
-    global Get_Name_Machine
+    #global Get_Name_Machine
     global Full
     global Num
     global Body
     global find_Full
     global NumTr
-    
-    Get_Text_Element()
+    #global driver
+    print("get element")
+    Get_Text_Element(cf.timeout)
+    print(cf.Get_Machine_from_Web)
     time.sleep(2)
-    if (Machine_name_title_excel != Get_Machine_from_Web and cf.error_flag == 0):
+    if (Machine_name_title_excel != cf.Get_Machine_from_Web and cf.error_flag == 0):
         print(" Run Test")
         # Machine_name_title_excel = "TestExecute-PC"
         Header = '//table[@summary="This is labelSuiteStepForDialog table"]//tbody'
@@ -105,8 +107,10 @@ def Change_Machine_For_Testcase(timeout_item ,Machine_name_title_excel, TimesPag
                         # time.sleep(2)
                         done = 0
                         count = 0
+                        print("ready to dbl click")
                         actionChains = ActionChains(cf.driver)
                         actionChains.double_click(find_Full).perform()
+                        print(" dbl was clicked")
                         while(count < timeout_item):
                             try:
                                 xpath = "//*[@class='content-container']"
@@ -114,6 +118,7 @@ def Change_Machine_For_Testcase(timeout_item ,Machine_name_title_excel, TimesPag
                                 count = count + 1 
                                 find_element = cf.driver.find_elements_by_xpath(xpath)[0]
                                 display = find_element.is_displayed()  # check if the path displays
+                                print("display", display)
                                 if(display is True):      
                                     done = 1 
                                     break
@@ -121,8 +126,8 @@ def Change_Machine_For_Testcase(timeout_item ,Machine_name_title_excel, TimesPag
                                 time.sleep(1)
                                 count = count + 1   
                                 print("waiting Machine table")
-                            if(done == 0):   # try: was not run
-                                cf.error_flag = 1 # have error
+                        if(done == 0):   # try: was not run
+                            cf.error_flag = 1 # have error
                         if(done == 1 and cf.error_flag == 0 ):
                             rowint = rowint + 1
                             row = str(rowint)
@@ -158,23 +163,26 @@ def Change_Machine_For_Testcase(timeout_item ,Machine_name_title_excel, TimesPag
                                     Element_Row_Choose.click()
                                     Element_Row_Choose.click()
                                     break
-                    # Click_OK_Button_Select_Machine()
-                    Click_Father_Son_Tag_htlm(cf.Class_tag, cf.timeout, cf.ok_father, cf.ok_class)
+                            if(cf.error_flag == 1):
+                                print("error_flag = 1")
+                                break
+                        # Click_OK_Button_Select_Machine()
+                        Click_Father_Son_Tag_htlm(cf.Class_tag, cf.timeout, cf.ok_father, cf.ok_class)
 
 
             Click_Next_Button_Select_Machine()
             time.sleep(3)
-        Finish_Click()
+        #Finish_Click()
     else:
         print( "It match don't need change")
-        Finish_Click()
+        #Finish_Click()
     
 
 
 # def Arrange_Heath_Machine():
 #     fgggggg
-def Get_Element_Row_Name_and_Health_Machine(number_row):
-    global Get_Name_Machine
+def Get_Element_Row_Name_and_Health_Machine(number_row,Machine_name_title_excel):
+    #global Get_Name_Machine
     global Full
     global Num
     global Body
@@ -225,30 +233,43 @@ def Get_Element_Row_Name_and_Health_Machine(number_row):
 
 
 
-def Get_TimesPage():
-    TimesPage_Link= '//div[@class="content-status-area"]'
-    
-    WebDriverWait(cf.driver, cf.timeout).until(EC.element_to_be_clickable((By.XPATH, TimesPage_Link)))
-    TimesPage = cf.driver.find_elements_by_xpath(TimesPage_Link)[0]
-    # displayTimesPage = TimesPage.is_displayed()  # check if the path displays
-    #     if(displayTimesPage is True):
-    Times = TimesPage.text
+def Get_TimesPage(timeout_item):
+    global error_flag
+    count = 0
+    done = 0
+    if(cf.error_flag == 0):
+        while(count < timeout_item):
+            try:
+                TimesPage_Link= '//div[@class="content-status-area"]'
+                TimesPage = cf.driver.find_elements_by_xpath(TimesPage_Link)[3]
+                # displayTimesPage = TimesPage.is_displayed()  # check if the path displays
+                #     if(displayTimesPage is True):
+                Times = TimesPage.text
 
-    A = (int(Times.index("of")+3))
-    B = (int(Times.index("items") -1))
-    TimesPage = int(int(Times[A:B])/10)+ 1
-    print(TimesPage)
-    return TimesPage
+                A = (int(Times.index("of")+3))
+                B = (int(Times.index("items") -1))
+                TimesPage = int(int(Times[A:B])/10)+ 1
+                print(TimesPage)
+                done = 1
+                return TimesPage
+            except:
+                time.sleep(1)
+                print("Waiting for element display")
+                count = count + 1
+        if(done == 0):   # try: was not run
+            cf.error_flag = 1 # have error
+    else:
+        print("error_Flag = 1")
 
-def main():
-    setup2()
-    # generate_xpath()
-    # Get_Text_Element()
-    # Get_TimesPage()
+# def main():
+#     setup2()
+#     # generate_xpath()
+#     # Get_Text_Element()
+#     # Get_TimesPage()
 
    
    
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
     

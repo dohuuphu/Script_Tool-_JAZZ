@@ -1,6 +1,7 @@
 import pandas
 import numpy as np
-from action_funtion import *
+#from action_funtion import *
+from Duy_Test import *
 
 # data = pandas.read_excel('Data_Main.xlsx',sheet_name='Data_Main')
 # loc =data.loc[data['Machine Name'].isin(['TEST02-PC'])]
@@ -77,14 +78,17 @@ def Edit_MC(MC1, MC2, MC3):
                         count = count + 1
                     Click_Tag_htlm(cf.aria_label_tag, cf.timeout, cf.Run_btn_arialable, count-1)
                     Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Run_testsuit_class, count-1)
+                    Change_Machine_For_Testcase(cf.timeout, 'TestExecute-PC',Get_TimesPage(cf.timeout))   # Duy_test
                     Edit_build_record()
-                    time.sleep(5)
+                    Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Finish_class)
+                    #time.sleep(5)
                     print(" CLICK CANCEL, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
-                    Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Cancel_testsuit_class)
+                    #Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Cancel_testsuit_class)
                     print(" BACKKKKKKKKKK, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
-                    time.sleep(3)
+                    #time.sleep(3)
                     cf.driver.back()  
-                    time.sleep(3)
+                    cf.driver.back()
+                    #time.sleep(3)
                     if(cf.error_flag ==  0): # make sure rename test_suit after click "finish"
                         MC1[i] = 0
             except:
@@ -102,14 +106,15 @@ def Edit_MC(MC1, MC2, MC3):
                         count = count + 1
                     Click_Tag_htlm(cf.aria_label_tag ,cf.timeout, cf.Run_btn_arialable, count-1)
                     Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Run_testsuit_class, count-1)
+                    Change_Machine_For_Testcase(cf.timeout, 'TestComplete14_',Get_TimesPage(cf.timeout))   # Duy_test
                     Edit_build_record()
-                    time.sleep(3)
+                    #time.sleep(3)
                     print(" CLICK CANCEL, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
                     Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Cancel_testsuit_class)
                     print(" BACKKKKKKKKKK, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
-                    time.sleep(3)
+                    #time.sleep(3)
                     cf.driver.back()  
-                    time.sleep(3)
+                    #time.sleep(3)
                     if(cf.error_flag ==  0): # make sure rename test_suit after click "finish"
                         MC2[i] = 0
             except:
@@ -127,14 +132,16 @@ def Edit_MC(MC1, MC2, MC3):
                         count = count + 1
                     Click_Tag_htlm(cf.aria_label_tag, cf.timeout, cf.Run_btn_arialable, count-1)
                     Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Run_testsuit_class, count-1)
+                    Change_Machine_For_Testcase(cf.timeout, 'TEST02-PC',Get_TimesPage(cf.timeout))   # Duy_test
                     Edit_build_record()
-                    time.sleep(3)
+                   # Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Finish_class)
+                    #time.sleep(3)
                     print(" CLICK CANCEL, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
                     Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Cancel_testsuit_class)
                     print(" BACKKKKKKKKKK, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
-                    time.sleep(3)
+                   # time.sleep(3)
                     cf.driver.back()  
-                    time.sleep(3)
+                    #time.sleep(3)
                     if(cf.error_flag ==  0): # make sure rename test_suit after click "finish"
                         MC3[i] = 0
                     

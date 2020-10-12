@@ -13,12 +13,14 @@ MC3 =[]
 #login_ID = "lhoang"
 #login_password = "D@talogic7"
 driver = 0
-PATH = r"C:\Users\pdo2\Desktop\Script Tool\Src\Driver\chromedriver84.exe"
-timeout = 20
+PATH = r"C:\Users\pdo2\Desktop\Script Tool\Src\Driver\chromedriver85.exe"
+timeout = 60
 filter_TestPlan = "1439"
 ViewBuildRecord_table = "//div[@class=\"jazz-ui-StyledBox sbBlue sbDark shadow jazz-ui-Dialog-absolute com-ibm-asq-common-web-dialog\"]"
 Testsuit_ExcutionRecord_table = "//div[@id =\"com_ibm_asq_common_web_ui_internal_view_common_EditorSection_10\"]"
 LastResult_TSExcution_table =  "//table[@class='dijit dijitMenu dijitMenuPassive dijitReset dijitMenuTable']"
+ok_father = "//*[@class='actions-container']"
+Select_machine_Table = "//div[@class='content-container']"
 
 #path
 # ID:
@@ -68,6 +70,8 @@ Ok_buildRecord_class = ["Ok_buildRecord_class", "primary-button"]
 Cancel_testsuit_class = ["Cancel_testsuit_class", "moreMargin non-primary-button"]
 LastResult_TSExcution_expand_class= ["LastResult_TSExcution_class", "toggle-edit-closed"]
 Filter_slider_TSExcution_class = ["filter_slider_TSExcution_class", "table-filter-slider dropdown-arrow-action"]
+ok_class = ["ok_class", "primary-button"]
+Finish_class = ["Finish_class", "moreMargin button-primary primary-button"]
 
 # Tag_html
 title_tag = "@title"
@@ -85,3 +89,7 @@ style = "style"
 
 # element:
 login_form = "//form[@class = 'form']"
+
+
+#duy
+Get_Machine_from_Web = ""

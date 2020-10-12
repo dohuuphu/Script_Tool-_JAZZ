@@ -8,14 +8,14 @@ from selenium.webdriver.remote.webelement import WebElement
 #from selenium.webdriver.support.select import Select
 import variable as cf
 #from variable import *
-#from variable_duy import vd
+from variable_duy import *
 import time
 
 
 # PATH = r"C:\Users\pdo2\Desktop\Script Tool\Src\Driver\chromedriver84.exe"
 #PATH = r"C:\Users\dnguyen4\Documents\Script_Tool-_JAZZ\Driver\chromedriver85.exe"
 # PATH = r"C:\Users\dnguyen4\Documents\Script_Tool-_JAZZ\Driver\chromedriver84.exe"
-
+global driver
 cf.driver = webdriver.Chrome(cf.PATH)
 def setup():
     
@@ -403,3 +403,35 @@ def Edit_build_record():
 # #    # ActionChains.double_click(find_element).perform()
 # #     print("2")
     #cf.driver.back()
+
+
+def Get_Text_Element(timeout_item):
+    #global Get_Machine_from_Web
+    global error_flag
+    count = 0
+    done = 0
+    if(cf.error_flag == 0):
+        while(count < timeout_item):
+            try:
+                # Click_Tag_htlm(Class_tag, timeout, Run_testsuit_class)
+                Machine_Element_link= '//td[@class="table-cell-editable"]//div[@class="clip-cell-nowrap table-cell-resize-marker"]//span'
+                Machine_Element = cf.driver.find_elements_by_xpath(Machine_Element_link)
+                cf.Get_Machine_from_Web = Machine_Element[5].text
+                LenText = len(cf.Get_Machine_from_Web)
+                time.sleep(1)
+                count = count + 1
+                print("length",LenText )
+                print('Get_Machine_from_Web: ',cf.Get_Machine_from_Web)
+                if( LenText != 0):
+                    done = 1
+                    break  
+            except:
+                time.sleep(1)
+                print("Waiting for element display")
+                count = count + 1
+        if(done == 0):   # try: was not run
+            cf.error_flag = 1 # have error
+    else:
+        print("error_Flag = 1")
+   
+   

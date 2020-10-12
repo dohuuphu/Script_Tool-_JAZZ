@@ -79,7 +79,7 @@ if __name__ == "__main__":
     win = tk.Tk()
     win.title("Script Tool")
     win.geometry("280x160")
-    icon = ImageTk.PhotoImage(Image.open("datalogic.png"))
+    icon = ImageTk.PhotoImage(Image.open("datalogic2.png"))
     # frame = ttk.Frame(win, width = 300, height = 250)
     # frame.grid(win)
 
