@@ -1,5 +1,5 @@
 from config import *
-a=0
+#a=0
 def plus():
     global a
     a +=1

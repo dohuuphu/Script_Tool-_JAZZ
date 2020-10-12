@@ -9,7 +9,7 @@ Check_row= 0
 def CheckActive(FileName,num,colum):
         csv = pd.read_csv(FileName)
         row = csv[csv.Num == num].values[0]
-        Status = row[colum]
+        # Status = row[colum]
         # print (row[colum])
         # print (Status)
         return row[colum]

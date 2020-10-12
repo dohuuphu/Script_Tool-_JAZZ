@@ -6,6 +6,16 @@ def show_message():
     messagebox.showinfo(title= 'input info', message= lib.plus)
 
 
+<<<<<<< HEAD
+=======
+    #create label
+    lable = ttk.Label(win, text = "222")
+    lable.grid(column = 0 , row = 0)
+    #create button
+    button = ttk.Button(win, text= 'run', command = show_message )
+    button.grid(column = 2, row = 0)
+    win.mainloop()
+>>>>>>> e36c3eb88a8198194a6f17954952bd93d416f64f
 
 def setup_win():
     pass
@@ -15,6 +25,9 @@ def get_entry():
     print((id_entry))
 
 def main():
+    print("a: ", lib.a)
+    lib.plus()
+    print("a: ", lib.a)
     setup_win()
 
 
