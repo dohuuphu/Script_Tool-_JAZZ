@@ -249,14 +249,14 @@ def Get_Element_Row_Name_and_Health_Machine(number_row,Machine_name_title_excel)
 
 
 
-def Get_TimesPage(timeout_item,index):
+def Get_TimesPage(timeout_item,index=0):
     global error_flag
     count = 0
     done = 0
     if(cf.error_flag == 0):
         while(count < timeout_item):
             try:
-                TimesPage_Link= '//div[@class="content-status-area"]'
+                TimesPage_Link= '//*[@class= "jazz-ui-wizard"]//div[@class="content-status-area"]'
                 TimesPage = cf.driver.find_elements_by_xpath(TimesPage_Link)[index]
                 # displayTimesPage = TimesPage.is_displayed()  # check if the path displays
                 #     if(displayTimesPage is True):
@@ -270,7 +270,7 @@ def Get_TimesPage(timeout_item,index):
                 return TimesPage
             except:
                 time.sleep(1)
-                print("Waiting for element display")
+                print("Waiting timepage display")
                 count = count + 1
         if(done == 0):   # try: was not run
             cf.error_flag = 1 # have error

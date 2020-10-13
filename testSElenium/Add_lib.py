@@ -2,6 +2,7 @@ import threading
 from Read_excel import *
 import tkinter as tk
 from tkinter import  ttk, messagebox
+import sys
 #from PIL import Image, ImageTk
 
 # ============================= Script =====================
@@ -57,6 +58,7 @@ def main():
         if(cf.end_flag == 1):
             cf.driver.quit()
             show_message()
+            sys.exit()
             break
 
 def check_login():

@@ -1,4 +1,4 @@
-
+from pathlib import Path
 
 # flag
 error_flag = 0
@@ -12,18 +12,18 @@ MC3 =[]
 #   Const
 #login_ID = "lhoang"
 #login_password = "D@talogic7"
+count_page = 0
 driver = 0
-# PATH = r"C:\Users\pdo2\Desktop\Script Tool\Src\Driver\chromedriver85.exe"
-#PATH = r"C:\Users\dnguyen4\Documents\Script_Tool-_JAZZ\Driver\chromedriver85.exe"
-PATH = r"C:\Users\Laptop88\Documents\Script_Tool-_JAZZ\Driver\chromedriver85.exe"
-
+PATH = str(Path("../Driver/chromedriver85.exe").resolve())
 timeout = 60
 filter_TestPlan = "1439"
 ViewBuildRecord_table = "//div[@class=\"jazz-ui-StyledBox sbBlue sbDark shadow jazz-ui-Dialog-absolute com-ibm-asq-common-web-dialog\"]"
-Testsuit_ExcutionRecord_table = "//div[@id =\"com_ibm_asq_common_web_ui_internal_view_common_EditorSection_10\"]"
+Testsuit_ExcutionRecord_table = "//*[@summary='This is Test Suite Execution Record table']"
 LastResult_TSExcution_table =  "//table[@class='dijit dijitMenu dijitMenuPassive dijitReset dijitMenuTable']"
 ok_father = "//*[@class='actions-container']"
 Select_machine_Table = "//div[@class='content-container']"
+#//*[@summary="This is Test Suite Execution Record table"]//*[@title="Show Inline Filters"]
+
 
 #path
 # ID:
@@ -54,13 +54,15 @@ NoFound_text = ["NoFound_text", "No items found."]
 Filter_TsPlan_arialable = ["Filter_TsPlan_arialable, ""This is Test Plans table: filter text input"]
 TC1_arialable = ["TC1_arialable", "CommandlineTest - Load configuration with Script Formatting from PC_Matrix M300N"]
 Run_btn_arialable= ["Run_btn_arialable", "Run Test Suite (Ctrl+Shift+X) Drop-Down Menu"]
-Filter_record_arialable = ["Filter_record_arialable", "This is View Build Records table: filter text input","1.9.0 RC 01"]
+Filter_record_arialable = ["Filter_record_arialable", "This is View Build Records table: filter text input","1.9.0 RC 02"]
 
 # Title value:
 Planning_title = ["Planning_title", "Planning"]
 Clear_Associated_Build_title = ["Clear_Associated_Build_title", "Clear Associated Build"]
 Change_Associated_Build_title = ["Change_Associated_Build_title", "Change Associated Build"]
 Clear_Table_Filters_title = ["Clear_Table_Filters", "Clear Table Filters"]
+Show_slider_TSExcution_title= ["Show_slider_TSExcution_title", "Show Inline Filters"]
+Hide_slider_TSExcution_title= ["Hide_slider_TSExcution_title", "Hide Inline Filters"]
 
 # Name:
 Clear_Text_Filter_name = ["Clear_Text_Filter", "This is View Build Records table Clear Filter Text"]
@@ -73,9 +75,11 @@ Select_BuildRecord_class = ["Select_BuildRecord", "dijit dijitReset dijitInline 
 Ok_buildRecord_class = ["Ok_buildRecord_class", "primary-button"]
 Cancel_testsuit_class = ["Cancel_testsuit_class", "moreMargin non-primary-button"]
 LastResult_TSExcution_expand_class= ["LastResult_TSExcution_class", "toggle-edit-closed"]
-Filter_slider_TSExcution_class = ["filter_slider_TSExcution_class", "table-filter-slider dropdown-arrow-action"]
 ok_class = ["ok_class", "primary-button"]
 Finish_class = ["Finish_class", "moreMargin button-primary primary-button"]
+
+#style
+
 
 # Tag_html
 title_tag = "@title"

@@ -15,9 +15,9 @@ from Duy_Test import *
 # print("name")
 # print(name[2])
 
-def find_setup_MC1():
+def find_setup_MC1(sheet):
     name=[]
-    file_excel = pandas.read_excel('Data_Main.xlsx',sheet_name='Data_Main')
+    file_excel = pandas.read_excel('Data_Main.xlsx',sheet_name=sheet[0])
     MC1_list =file_excel.loc[file_excel['Machine Name'].isin(['TestExecute-PC'])]
     list_index = MC1_list.index #[0,2] row
     for i in range(len(list_index)):
@@ -27,9 +27,9 @@ def find_setup_MC1():
     # print("Machine_name: " + str(name))
     return(name)
 
-def find_setup_MC2():
+def find_setup_MC2(sheet):
     name=[]
-    file_excel = pandas.read_excel('Data_Main.xlsx',sheet_name='Data_Main')
+    file_excel = pandas.read_excel('Data_Main.xlsx',sheet_name=sheet[0])
     MC1_list =file_excel.loc[file_excel['Machine Name'].isin(['TestComplete14_'])]
     list_index = MC1_list.index #[0,2] row
     for i in range(len(list_index)):
@@ -39,9 +39,9 @@ def find_setup_MC2():
     # print("Machine_name: " + str(name))
     return(name)
 
-def find_setup_MC3():
+def find_setup_MC3(sheet):
     name=[]
-    file_excel = pandas.read_excel('Data_Main.xlsx',sheet_name='Data_Main')
+    file_excel = pandas.read_excel('Data_Main.xlsx',sheet_name=sheet[0])
     MC1_list =file_excel.loc[file_excel['Machine Name'].isin(['TEST02-PC'])]
     list_index = MC1_list.index #[0,2] row
     for i in range(len(list_index)):
@@ -63,7 +63,8 @@ def find_max_ArrMachine(array):
 
 def Edit_MC(MC1, MC2, MC3):
     name1 = name2 = name3 =[]
-    count = 0
+    #global count
+    cf.count_page = 0
     if(max_len != 0):
         for i in range(cf.save_forloop, max_len):
             name1 = name2 = name3 =[]
@@ -75,10 +76,10 @@ def Edit_MC(MC1, MC2, MC3):
                 if(name1[1] != "0"):  # name1 = 0 when that test_suit was run
                     Click_Tag_htlm(cf.text_Tag, cf.timeout, name1)
                     if(cf.error_flag ==  0): # if test_suit was Clicked, page_path + 1
-                        count = count + 1
-                    Click_Tag_htlm(cf.aria_label_tag, cf.timeout, cf.Run_btn_arialable, count-1)
-                    Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Run_testsuit_class, count-1)
-                    Change_Machine_For_Testcase(cf.timeout, 'TestExecute-PC',Get_TimesPage(cf.timeout,2+count))   # Duy_test
+                        cf.count_page = cf.count_page + 1
+                    Click_Tag_htlm(cf.aria_label_tag, cf.timeout, cf.Run_btn_arialable, cf.count_page-1)
+                    Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Run_testsuit_class, cf.count_page-1)
+                    Change_Machine_For_Testcase(cf.timeout, 'TestExecute-PC',Get_TimesPage(cf.timeout))   # Duy_test
                     Edit_build_record()
                     Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Finish_class)
                     #time.sleep(5)
@@ -103,12 +104,11 @@ def Edit_MC(MC1, MC2, MC3):
                 if(name2[1] != "0"):  # name2 = 0 when that test_suit was run
                     Click_Tag_htlm(cf.text_Tag, cf.timeout, name2)
                     if(cf.error_flag ==  0): # if test_suit was Clicked page_path + 1
-                        count = count + 1
-                    Click_Tag_htlm(cf.aria_label_tag ,cf.timeout, cf.Run_btn_arialable, count-1)
-                    Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Run_testsuit_class, count-1)
-                    Change_Machine_For_Testcase(cf.timeout, 'TestComplete14_',Get_TimesPage(cf.timeout,2+count))   # Duy_test
+                        cf.count_page = cf.count_page + 1
+                    Click_Tag_htlm(cf.aria_label_tag ,cf.timeout, cf.Run_btn_arialable, cf.count_page-1)
+                    Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Run_testsuit_class, cf.count_page-1)
+                    Change_Machine_For_Testcase(cf.timeout, 'TestComplete14_',Get_TimesPage(cf.timeout))   # Duy_test
                     Edit_build_record()
-                    Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Finish_class)
                     Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Finish_class)
                     #time.sleep(5)
                     #print(" CLICK CANCEL, PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
@@ -132,10 +132,10 @@ def Edit_MC(MC1, MC2, MC3):
                 if(name3[1] != "0"):  # name3 = 0 when that test_suit was run
                     Click_Tag_htlm(cf.text_Tag, cf.timeout, name3)
                     if(cf.error_flag ==  0): # if test_suit was Clicked page_path + 1
-                        count = count + 1
-                    Click_Tag_htlm(cf.aria_label_tag, cf.timeout, cf.Run_btn_arialable, count-1)
-                    Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Run_testsuit_class, count-1)
-                    Change_Machine_For_Testcase(cf.timeout, 'TEST02-PC',Get_TimesPage(cf.timeout,2+count))   # Duy_test
+                        cf.count_page = cf.count_page + 1
+                    Click_Tag_htlm(cf.aria_label_tag, cf.timeout, cf.Run_btn_arialable, cf.count_page-1)
+                    Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Run_testsuit_class, cf.count_page-1)
+                    Change_Machine_For_Testcase(cf.timeout, 'TEST02-PC',Get_TimesPage(cf.timeout))   # Duy_test
                     Edit_build_record()
                     Click_Tag_htlm(cf.Class_tag, cf.timeout, cf.Finish_class)
                     #time.sleep(5)
@@ -170,9 +170,9 @@ def Edit_MC(MC1, MC2, MC3):
 def Edit_testSuit_record():    
     if(cf.error_flag == 0):
         if(cf.get_data_excel == 0):
-            cf.MC1 = find_setup_MC1()
-            cf.MC2 = find_setup_MC2()
-            cf.MC3 = find_setup_MC3()
+            cf.MC1 = find_setup_MC1(cf.TestPlan_linktext)
+            cf.MC2 = find_setup_MC2(cf.TestPlan_linktext)
+            cf.MC3 = find_setup_MC3(cf.TestPlan_linktext)
             # print("MC1: " + str(MC1))
             # print("MC2: " + str(MC2))
             # print("MC3: " + str(MC3))

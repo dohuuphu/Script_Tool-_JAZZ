@@ -11,11 +11,8 @@ import variable as cf
 from variable_duy import *
 import time
 
-
-# PATH = r"C:\Users\pdo2\Desktop\Script Tool\Src\Driver\chromedriver84.exe"
-#PATH = r"C:\Users\dnguyen4\Documents\Script_Tool-_JAZZ\Driver\chromedriver85.exe"
-# PATH = r"C:\Users\dnguyen4\Documents\Script_Tool-_JAZZ\Driver\chromedriver84.exe"
 global driver
+
 cf.driver = webdriver.Chrome(cf.PATH)
 def setup():
     
@@ -285,6 +282,23 @@ def Get_attribute_Father_Son(tag, timeout_item, father, path_item, attribute, in
         print("error_Flag =1")
 
 
+def Get_NoItem(attribute):
+    global error_flag
+    if(cf.error_flag == 0):
+        time.sleep(1) # waiting for update attribute
+        xpath = "//*[text()='No items found.']"
+        print(xpath)
+        find_element = cf.driver.find_elements_by_xpath(xpath)
+        for i in range(len(find_element)):
+            value = find_element[i].get_attribute(attribute)
+            if(value == "display: block;"):
+                print("no item found is exist")
+                return True
+            else:
+                return False
+     
+
+
 def Check_element_isDisplay(path_item):
     try:
         xpath = path_item
@@ -330,44 +344,26 @@ def Click_FilterText_TestPlan(timeout_item,string):
 
 def Check_Result():
     cf.complete_flag = 0
-    Click_Father_Son_Tag_htlm(cf.Class_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Filter_slider_TSExcution_class) # click expand filter
+    Click_Father_Son_Tag_htlm(cf.title_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Show_slider_TSExcution_title) # click expand filter
     Click_Father_Son_Tag_htlm(cf.Name_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Clear_name)
     Click_Father_Son_Tag_htlm(cf.Class_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.LastResult_TSExcution_expand_class)    # click last result
     Click_Father_Son_Tag_htlm(cf.text_Tag, cf.timeout, cf.LastResult_TSExcution_table, cf.InProgress_text)  # click incomplete
-    Click_Father_Son_Tag_htlm(cf.text_Tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Run_text) # click Run
     while(cf.complete_flag == 0 and cf.error_flag ==  0):
-        Nofound = Get_attribute_Father_Son(cf.text_Tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.NoFound_text, cf.style) 
-        # if(cf.error_flag ==  1):
-        #     print("dont get complete flag and break")
-        #     break
-        if(Nofound != "display: none;"):
+        Click_Father_Son_Tag_htlm(cf.text_Tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Run_text) # click Run
+        Nofound = Get_NoItem(cf.style) 
+        if(Nofound is True):
             cf.complete_flag = 1
             cf.save_forloop = cf.save_forloop + 1       # save for_loop +1 when complete 1 turn
         else:
             cf.complete_flag = 0
+        time.sleep(10)
     # uncheck In_progress
-    Click_Father_Son_Tag_htlm(cf.Class_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.LastResult_TSExcution_expand_class)    # click last result
-    Click_Father_Son_Tag_htlm(cf.text_Tag, cf.timeout, cf.LastResult_TSExcution_table, cf.InProgress_text)  # click incomplete
+    # Click_Father_Son_Tag_htlm(cf.Class_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.LastResult_TSExcution_expand_class)    # click last result
+    # Click_Father_Son_Tag_htlm(cf.text_Tag, cf.timeout, cf.LastResult_TSExcution_table, cf.InProgress_text)  # click incomplete
+    Click_Father_Son_Tag_htlm(cf.Name_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Clear_name)
     Click_Father_Son_Tag_htlm(cf.text_Tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Run_text) # click Run
+    Click_Father_Son_Tag_htlm(cf.title_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Hide_slider_TSExcution_title)
     print("done")
-
-# Global Variables
-arrMachine1 = [1,9,3,11,15]                       # all of Test suit are selected with Machine 1
-arrMachine2 = [2,12,6,4]                          #
-arrMachine3 = [5,7,8]                             #
-Arr = [arrMachine1, arrMachine2, arrMachine3]
-max_len = 0
-
-
-# def find_max_ArrMachine():
-#     for i in Arr:
-#         if(len(i) > max_len):
-#             max_len = len(i) 
-#     print("max length arr: " + str(max_len))
-
- 
-
-
 
 def Run_TestSuit(): # example
     #for i in max_len:
