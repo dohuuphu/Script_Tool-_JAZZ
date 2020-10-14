@@ -40,8 +40,7 @@ def Click_LinkText(timeout_item, path_item):
             WebDriverWait(cf.driver, timeout_item).until(EC.presence_of_element_located((By.LINK_TEXT, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
             cf.driver.find_element_by_link_text(path_item[0]).click()
         except: 
-            WebDriverWait(cf.driver, timeout_item).until(EC.presence_of_element_located((By.LINK_TEXT, path_item[0])), message=("Can not find: " + path_item[1]))        # wait until item exits
-            cf.driver.find_element_by_link_text(path_item[0]).click()
+            cf.error_flag == 1
     else:
         print("error_Flag =1")
     

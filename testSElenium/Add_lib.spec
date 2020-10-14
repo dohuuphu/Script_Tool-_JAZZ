@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['Add_lib.py'],
-             pathex=['C:\\Users\\Laptop88\\Documents\\Script_Tool-_JAZZ\\testSElenium'],
+             pathex=['C:\\Users\\pdo2\\Desktop\\Script Tool\\Src\\testSElenium'],
              binaries=[],
              datas=[],
              hiddenimports=[],
