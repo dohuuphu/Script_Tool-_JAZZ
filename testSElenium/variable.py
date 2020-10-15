@@ -4,6 +4,9 @@ from pathlib import Path
 error_flag = 0
 complete_flag = 0
 end_flag = 0
+Run_Machine1_flag = 0
+Run_Machine2_flag = 0
+Run_Machine3_flag = 0
 get_data_excel = 0
 save_forloop = 0
 MC1 =[]

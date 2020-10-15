@@ -366,7 +366,7 @@ def Check_Result():
     print("done")
 
 def Check_result_MC1(machine):
-    machine1_flag = False
+    cf.Run_Machine1_flag = False
     Click_Father_Son_Tag_htlm(cf.Name_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Clear_name)
     cf.Machine_name[2] = machine
     Send_Father_SonTag_htlm(cf.Name_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Machine_name)
@@ -375,7 +375,7 @@ def Check_result_MC1(machine):
     Click_Father_Son_Tag_htlm(cf.text_Tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Run_text) # click Run
     Nofound = Get_NoItem(cf.style) 
     if(Nofound is True):
-        machine1_flag = True
+        cf.Run_Machine1_flag = True
         return True # return true to break out of loop
     
         
