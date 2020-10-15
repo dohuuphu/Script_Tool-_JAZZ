@@ -54,7 +54,7 @@ NoFound_text = ["NoFound_text", "No items found."]
 Filter_TsPlan_arialable = ["Filter_TsPlan_arialable, ""This is Test Plans table: filter text input"]
 TC1_arialable = ["TC1_arialable", "CommandlineTest - Load configuration with Script Formatting from PC_Matrix M300N"]
 Run_btn_arialable= ["Run_btn_arialable", "Run Test Suite (Ctrl+Shift+X) Drop-Down Menu"]
-Filter_record_arialable = ["Filter_record_arialable", "This is View Build Records table: filter text input","1.9.0 RC 02"]
+Filter_record_arialable = ["Filter_record_arialable", "This is View Build Records table: filter text input"]#,"1.9.0 RC 02"]
 
 # Title value:
 Planning_title = ["Planning_title", "Planning"]

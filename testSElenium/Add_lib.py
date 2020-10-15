@@ -45,10 +45,12 @@ def main():
     id_entry = entry_id.get()
     pass_entry = entry_pass.get()
     test_plan = entry_Testplan.get()
+    Build_Record = entry_BuildRecord.get()
     cf.IDuser_id = np.append(cf.IDuser_id, id_entry )
     cf.password_id = np.append(cf.password_id, pass_entry)
     cf.TestPlan_linktext = np.append(cf.TestPlan_linktext, test_plan)
     cf.TestPlan_linktext = np.append(cf.TestPlan_linktext, test_plan)
+    cf.Filter_record_arialable = np.append(cf.Filter_record_arialable, Build_Record)
     while(True):
         cf.error_flag = 0
         cf.complete_flag = 0
@@ -83,7 +85,7 @@ def check_login():
 if __name__ == "__main__":
     win = tk.Tk()
     win.title("Script Tool")
-    win.geometry("280x160")
+    win.geometry("280x240")
     #icon = ImageTk.PhotoImage(Image.open("datalogic2.png"))
     # frame = ttk.Frame(win, width = 300, height = 250)
     # frame.grid(win)
@@ -94,28 +96,32 @@ if __name__ == "__main__":
     label_id = ttk.Label(win, text="ID User:")
     label_pass = ttk.Label(win, text="Password:")
     label_TestPlan_id = ttk.Label(win, text="TestPlan ID:")
+    BuildRecord_id = ttk.Label(win, text="Build Record:")
 
     #label_img.place(relx=0.05, rely=0.02, anchor=tk.N)
     label_content.place(relx=0.5, rely=0.05, anchor=tk.N)
     label_id.place(relx=0.20, rely=0.25, anchor=tk.N)
-    label_pass.place(relx=0.20, rely=0.45, anchor=tk.N)
-    label_TestPlan_id.place(relx=0.20, rely=0.65, anchor=tk.N)
+    label_pass.place(relx=0.20, rely=0.4, anchor=tk.N)
+    label_TestPlan_id.place(relx=0.20, rely=0.55, anchor=tk.N)
+    BuildRecord_id.place(relx=0.20, rely=0.7, anchor=tk.N)
    # lable_pass.pack(win, sticky = tk.E + tk.W)
 
     # create text entry
     entry_id = ttk.Entry(win)
     entry_pass = ttk.Entry(win, show = "*")
     entry_Testplan = ttk.Entry(win)
+    entry_BuildRecord = ttk.Entry(win)
     
     entry_id.place(relx=0.65, rely=0.25, anchor=tk.N)
-    entry_pass.place(relx=0.65, rely=0.45, anchor=tk.N)
-    entry_Testplan.place(relx=0.65, rely=0.65, anchor=tk.N)
+    entry_pass.place(relx=0.65, rely=0.4, anchor=tk.N)
+    entry_Testplan.place(relx=0.65, rely=0.55, anchor=tk.N)
+    entry_BuildRecord.place(relx=0.65, rely=0.7, anchor=tk.N)
 
     # create button
     button = ttk.Button(win, text='Run', command = main)
     #button.bind("<Button-1>", main)
     #button.bind("<Button-1>", )
-    button.place(relx=0.5, rely=1, anchor = tk.S)
+    button.place(relx=0.5, rely=0.85, anchor = tk.N)
 
     win.mainloop()
 
