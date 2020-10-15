@@ -13,6 +13,7 @@ import time
 
 global driver
 
+print(cf.PATH)
 cf.driver = webdriver.Chrome(cf.PATH)
 def setup():
     
@@ -363,6 +364,23 @@ def Check_Result():
     Click_Father_Son_Tag_htlm(cf.text_Tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Run_text) # click Run
     Click_Father_Son_Tag_htlm(cf.title_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Hide_slider_TSExcution_title)
     print("done")
+
+def Check_result_MC1(machine):
+    machine1_flag = False
+    Click_Father_Son_Tag_htlm(cf.Name_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Clear_name)
+    cf.Machine_name[2] = machine
+    Send_Father_SonTag_htlm(cf.Name_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Machine_name)
+    Click_Father_Son_Tag_htlm(cf.Class_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.LastResult_TSExcution_expand_class)    # click last result
+    Click_Father_Son_Tag_htlm(cf.text_Tag, cf.timeout, cf.LastResult_TSExcution_table, cf.InProgress_text)  # click incomplete
+    Click_Father_Son_Tag_htlm(cf.text_Tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Run_text) # click Run
+    Nofound = Get_NoItem(cf.style) 
+    if(Nofound is True):
+        machine1_flag = True
+        return True # return true to break out of loop
+    
+        
+    
+
 
 def Run_TestSuit(): # example
     #for i in max_len:

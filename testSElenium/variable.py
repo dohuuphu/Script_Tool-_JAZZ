@@ -67,6 +67,7 @@ Hide_slider_TSExcution_title= ["Hide_slider_TSExcution_title", "Hide Inline Filt
 # Name:
 Clear_Text_Filter_name = ["Clear_Text_Filter", "This is View Build Records table Clear Filter Text"]
 Clear_name = ["Clear_name", "cancel"]
+Machine_name = ["Machine_name", "name"]
 
 # Class:
 Run_testsuit_class = ["Run_testsuit_class", "dijitIcon dijitMenuItemIcon execute-icon-image"]
