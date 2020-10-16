@@ -7,6 +7,12 @@ end_flag = 0
 Run_Machine1_flag = 0
 Run_Machine2_flag = 0
 Run_Machine3_flag = 0
+Turn_Machine1_flag = 0
+Turn_Machine2_flag = 0
+Turn_Machine3_flag = 0
+Number_MC1 = 0
+Number_MC2 = 0
+Number_MC3 = 0
 get_data_excel = 0
 save_forloop = 0
 MC1 =[]
@@ -17,7 +23,8 @@ MC3 =[]
 #login_password = "D@talogic7"
 count_page = 0
 driver = 0
-PATH = str(Path("../Driver/chromedriver85.exe").resolve())
+#PATH = str(Path("../Driver/chromedriver85.exe").resolve())
+PATH = r"C:\Users\pdo2\Desktop\ScriptTool\Src\Driver\chromedriver85.exe"
 timeout = 60
 filter_TestPlan = "1439"
 ViewBuildRecord_table = "//div[@class=\"jazz-ui-StyledBox sbBlue sbDark shadow jazz-ui-Dialog-absolute com-ibm-asq-common-web-dialog\"]"
@@ -70,7 +77,7 @@ Hide_slider_TSExcution_title= ["Hide_slider_TSExcution_title", "Hide Inline Filt
 # Name:
 Clear_Text_Filter_name = ["Clear_Text_Filter", "This is View Build Records table Clear Filter Text"]
 Clear_name = ["Clear_name", "cancel"]
-Machine_name = ["Machine_name", "name"]
+Machine_name = ["Machine_name", "name", '']
 
 # Class:
 Run_testsuit_class = ["Run_testsuit_class", "dijitIcon dijitMenuItemIcon execute-icon-image"]

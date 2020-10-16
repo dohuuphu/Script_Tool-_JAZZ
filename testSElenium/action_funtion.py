@@ -365,20 +365,92 @@ def Check_Result():
     Click_Father_Son_Tag_htlm(cf.title_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Hide_slider_TSExcution_title)
     print("done")
 
+def Check_Result2(name1, name2, name3):
+    Click_Father_Son_Tag_htlm(cf.title_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Show_slider_TSExcution_title) # click expand filter
+    print("name1: ", name1)
+    print("name2: ", name2)
+    print("name3: ", name3)
+    check_MC1 = False
+    check_MC2 = False
+    check_MC3 = False
+    while(cf.end_flag == 0 and cf.error_flag ==  0):
+        if(cf.Turn_Machine1_flag < cf.Number_MC1 and name1 != "0"):
+            print("check mc1")
+            check_MC1 = Check_result_MC1(name1)
+            if(check_MC1 is True):
+                break
+        if(cf.Turn_Machine2_flag < cf.Number_MC2 and name2 != "0"):
+            print("check mc2")
+            check_MC2 = Check_result_MC2(name2)
+            if(check_MC2 is True):
+                break
+        if(cf.Turn_Machine3_flag < cf.Number_MC3 and name3 != "0"):
+            print("check mc3")
+            check_MC3 = Check_result_MC3(name3)
+            if(check_MC3 is True):
+                break
+        Check_complete_testplan()   # if complete =1 => out loop
+        time.sleep(10) #Waitting test suit run 
+    # set default
+    Click_Father_Son_Tag_htlm(cf.Name_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Clear_name)
+    Click_Father_Son_Tag_htlm(cf.text_Tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Run_text) # click Run
+    Click_Father_Son_Tag_htlm(cf.title_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Hide_slider_TSExcution_title)
+    print("done")
+
 def Check_result_MC1(machine):
     cf.Run_Machine1_flag = False
     Click_Father_Son_Tag_htlm(cf.Name_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Clear_name)
     cf.Machine_name[2] = machine
-    Send_Father_SonTag_htlm(cf.Name_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Machine_name)
-    Click_Father_Son_Tag_htlm(cf.Class_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.LastResult_TSExcution_expand_class)    # click last result
-    Click_Father_Son_Tag_htlm(cf.text_Tag, cf.timeout, cf.LastResult_TSExcution_table, cf.InProgress_text)  # click incomplete
-    Click_Father_Son_Tag_htlm(cf.text_Tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Run_text) # click Run
-    Nofound = Get_NoItem(cf.style) 
-    if(Nofound is True):
-        cf.Run_Machine1_flag = True
-        return True # return true to break out of loop
+    if(cf.error_flag  == 0):
+        Send_Father_SonTag_htlm(cf.Name_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Machine_name)     #send name to filter
+        Click_Father_Son_Tag_htlm(cf.Class_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.LastResult_TSExcution_expand_class)    # click last result
+        Click_Father_Son_Tag_htlm(cf.text_Tag, cf.timeout, cf.LastResult_TSExcution_table, cf.InProgress_text)  # click incomplete
+        Click_Father_Son_Tag_htlm(cf.text_Tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Run_text) # click Run
+        Nofound = Get_NoItem(cf.style) 
+        if(Nofound is True):
+            cf.Run_Machine1_flag = True
+            cf.Turn_Machine1_flag = cf.Turn_Machine1_flag +1
+            return True # return true to break out of loop
     
-        
+def Check_result_MC2(machine):
+    cf.Run_Machine2_flag = False
+    Click_Father_Son_Tag_htlm(cf.Name_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Clear_name)
+    cf.Machine_name[2] = machine
+    if(cf.error_flag  == 0):
+        Send_Father_SonTag_htlm(cf.Name_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Machine_name)
+        Click_Father_Son_Tag_htlm(cf.Class_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.LastResult_TSExcution_expand_class)    # click last result
+        Click_Father_Son_Tag_htlm(cf.text_Tag, cf.timeout, cf.LastResult_TSExcution_table, cf.InProgress_text)  # click incomplete
+        Click_Father_Son_Tag_htlm(cf.text_Tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Run_text) # click Run
+        Nofound = Get_NoItem(cf.style) 
+        if(Nofound is True):
+            cf.Run_Machine2_flag = True
+            return True # return true to break out of loop
+
+def Check_result_MC3(machine):
+    cf.Run_Machine3_flag = False
+    Click_Father_Son_Tag_htlm(cf.Name_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Clear_name)
+    cf.Machine_name[2] = machine
+    if(cf.error_flag  == 0):
+        Send_Father_SonTag_htlm(cf.Name_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Machine_name)
+        Click_Father_Son_Tag_htlm(cf.Class_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.LastResult_TSExcution_expand_class)    # click last result
+        Click_Father_Son_Tag_htlm(cf.text_Tag, cf.timeout, cf.LastResult_TSExcution_table, cf.InProgress_text)  # click incomplete
+        Click_Father_Son_Tag_htlm(cf.text_Tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Run_text) # click Run
+        Nofound = Get_NoItem(cf.style) 
+        if(Nofound is True):
+            cf.Run_Machine3_flag = True
+            return True # return true to break out of loop
+
+def Check_complete_testplan():
+    cf.end_flag = 0
+    if(cf.error_flag  == 0):
+        Click_Father_Son_Tag_htlm(cf.Name_tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Clear_name)
+       # Click_Father_Son_Tag_htlm(cf.text_Tag, cf.timeout, cf.LastResult_TSExcution_table, cf.InProgress_text)  # click incomplete
+        Click_Father_Son_Tag_htlm(cf.text_Tag, cf.timeout, cf.Testsuit_ExcutionRecord_table, cf.Run_text) # click Run
+        Nofound = Get_NoItem(cf.style) 
+    if(Nofound is True):
+        cf.end_flag = 1
+    else:
+        cf.end_flag = 0
     
 
 
@@ -394,28 +466,19 @@ def Run_TestSuit(): # example
 
 
 def Edit_build_record():
-    Click_Tag_htlm(cf.title_tag, cf.timeout, cf.Clear_Associated_Build_title)
-    Click_Tag_htlm(cf.title_tag, cf.timeout, cf.Change_Associated_Build_title)
+    pass
+    # Click_Tag_htlm(cf.title_tag, cf.timeout, cf.Clear_Associated_Build_title)
+    # Click_Tag_htlm(cf.title_tag, cf.timeout, cf.Change_Associated_Build_title)
 
-    Click_Father_Son_Tag_htlm(cf.title_tag, cf.timeout, cf.ViewBuildRecord_table, cf.Clear_Table_Filters_title)
-    Click_Father_Son_Tag_htlm(cf.Name_tag, cf.timeout, cf.ViewBuildRecord_table, cf.Clear_Text_Filter_name) 
+    # Click_Father_Son_Tag_htlm(cf.title_tag, cf.timeout, cf.ViewBuildRecord_table, cf.Clear_Table_Filters_title)
+    # Click_Father_Son_Tag_htlm(cf.Name_tag, cf.timeout, cf.ViewBuildRecord_table, cf.Clear_Text_Filter_name) 
     
-    Send_Father_SonTag_htlm(cf.aria_label_tag, cf.timeout, cf.ViewBuildRecord_table, cf.Filter_record_arialable)
-    time.sleep(2)
-    Click_Father_Son_Tag_htlm(cf.Class_tag, cf.timeout, cf.ViewBuildRecord_table, cf.Run_filter_buildrecord_class)
-    Click_Father_Son_Tag_htlm(cf.Class_tag, cf.timeout, cf.ViewBuildRecord_table, cf.Select_BuildRecord_class)
-    Click_Father_Son_Tag_htlm(cf.Class_tag, cf.timeout, cf.ViewBuildRecord_table, cf.Ok_buildRecord_class)
-#     time.sleep(3)
-#     xpath = "//tr[@name= '_IMTthl-EEeqc9ZermTj1qQ-row']//span[text()=\"TEST02-PC\"]"
+    # Send_Father_SonTag_htlm(cf.aria_label_tag, cf.timeout, cf.ViewBuildRecord_table, cf.Filter_record_arialable)
+    # time.sleep(2)
+    # Click_Father_Son_Tag_htlm(cf.Class_tag, cf.timeout, cf.ViewBuildRecord_table, cf.Run_filter_buildrecord_class)
+    # Click_Father_Son_Tag_htlm(cf.Class_tag, cf.timeout, cf.ViewBuildRecord_table, cf.Select_BuildRecord_class)
+    # Click_Father_Son_Tag_htlm(cf.Class_tag, cf.timeout, cf.ViewBuildRecord_table, cf.Ok_buildRecord_class)
 
-# #     find_element = cf.driver.find_element_by_xpath(xpath)
-# #     print(find_element)
-# #     actionChains = ActionChains(cf.driver)
-# #     actionChains.double_click(find_element).perform()
-# #     print("1")
-# #    # ActionChains.double_click(find_element).perform()
-# #     print("2")
-    #cf.driver.back()
 
 
 def Get_Text_Element(timeout_item):
